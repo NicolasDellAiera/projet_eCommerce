@@ -12,11 +12,18 @@ import fr.adaming.entities.Categorie;
 import fr.adaming.entities.Produit;
 import fr.adaming.service.ICategorieService;
 import fr.adaming.service.IProduitService;
+/**
+ * Cette classe est le controleur du client
+ * @author INTI-0366
+ *
+ */
+
 
 @Controller
 @RequestMapping("/site")
 
 public class ClientController {
+
 	
 	@Autowired
 	private ICategorieService catService;
