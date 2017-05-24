@@ -68,12 +68,24 @@
 	<!-- MENU CATEGORIES -->
 
 	<div class="btn-group btn-group-justified" role="group" aria-label="...">
-		<c:forEach var="cat" items="pCatListe">
+		<c:forEach var="cat" items="${pCatListe}">
 			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-default">${cat.nomCategorie}</button>
+				<a href="${pageContext.request.contextPath}/site/afficherParCat/${cat.nomCategorie}"><button type="button" class="btn btn-default">${cat.nomCategorie}</button></a>
 			</div>
 		</c:forEach>
 	</div>
+	
+	<table>
+		<tr style="background-color:black; color:white">
+			<th>Désignation</th>
+		</tr>
+		<c:forEach var="prod" items="${pPrListe}">
+			<tr>
+				<td>${prod.designation}</td>
+			</tr>
+		</c:forEach>
+			
+		</table>
 
 	<%@include file="templates/footer.html"%>
 
