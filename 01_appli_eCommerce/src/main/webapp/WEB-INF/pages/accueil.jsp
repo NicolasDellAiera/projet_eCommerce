@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC>
 <html>
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Insert title here</title>
+	<title>Page d'accueil</title>
 </head>
 
 <body>
-	<% response.sendRedirect("site"); %>
+
+	<%@include file="templates/header.html" %>
+	
+	<%@include file="templates/footer.html" %>
+
 </body>
 
 </html>
