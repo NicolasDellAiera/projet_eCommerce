@@ -27,7 +27,7 @@ public class LigneCommande implements Serializable {
 	private int quantite;
 	
 	@Column(name="prix")
-	private int prix;
+	private double prix;
 	
 	//-----Associations-----//
 	
@@ -35,19 +35,23 @@ public class LigneCommande implements Serializable {
 	@JoinColumn(name="commande_id", referencedColumnName="idCommande")
 	private Commande commande;
 	
+	@ManyToOne
+	@JoinColumn(name="produit_id", referencedColumnName="idProduit")
+	private Produit produit;
+	
 	//-----Constructeurs-----//
 
 	public LigneCommande() {
 		super();
 	}
 
-	public LigneCommande(int quantite, int prix) {
+	public LigneCommande(int quantite, double prix) {
 		super();
 		this.quantite = quantite;
 		this.prix = prix;
 	}
 
-	public LigneCommande(int idLigneCommande, int quantite, int prix) {
+	public LigneCommande(int idLigneCommande, int quantite, double prix) {
 		super();
 		this.idLigneCommande = idLigneCommande;
 		this.quantite = quantite;
@@ -72,12 +76,20 @@ public class LigneCommande implements Serializable {
 		this.quantite = quantite;
 	}
 
-	public int getPrix() {
+	public double getPrix() {
 		return prix;
 	}
 
-	public void setPrix(int prix) {
+	public void setPrix(double prix) {
 		this.prix = prix;
+	}
+
+	public Produit getProduit() {
+		return produit;
+	}
+
+	public void setProduit(Produit produit) {
+		this.produit = produit;
 	}
 
 	public Commande getCommande() {
