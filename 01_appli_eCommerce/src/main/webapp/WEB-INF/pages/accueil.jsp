@@ -7,10 +7,11 @@
 <html>
 
 <head>
-<link href="<c:url value="/resources/styles/bootstrap.css"></c:url>"
-	rel="stylesheet" />
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Page d'accueil</title>
+	<script type="text/javascript" src="<c:url value="/ressources/js/bootstrap.js"></c:url>"></script>
+	<script type="text/javascript" src="<c:url value="/ressources/js/jquery-3.2.1.js"></c:url>"></script>
+	<link href="<c:url value="/ressources/styles/bootstrap.css"></c:url>" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Page d'accueil</title>
 </head>
 
 <body>
@@ -53,7 +54,7 @@
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Search">
 					</div>
-					<button type="submit" class="btn btn-default">Rechercher<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					<button type="submit" class="btn btn-default">Rechercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					</button>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
@@ -75,7 +76,7 @@
 		</c:forEach>
 	</div>
 	
-	<table>
+	<table class="table table-hover">
 		<tr style="background-color:black; color:white">
 			<th>Désignation</th>
 		</tr>
