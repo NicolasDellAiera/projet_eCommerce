@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ClientController 
 {
 	@RequestMapping(method=RequestMethod.GET)
-	public String afficherAccueil()
+	public String afficherAccueil(ModelMap model)
 	{
+		
 		return "accueil";
 	}
 }
