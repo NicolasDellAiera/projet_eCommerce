@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -46,6 +48,10 @@ public class Produit implements Serializable {
 	
 	@OneToMany(mappedBy="produit", cascade=CascadeType.ALL)
 	private List<LigneCommande> listeLigneCommandes;
+	
+	@ManyToOne
+	@JoinColumn(name="categorie_id", referencedColumnName="idCategorie")
+	private Categorie categorie;
 	
 	//-----Constructeurs-----//
 
@@ -131,6 +137,14 @@ public class Produit implements Serializable {
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	} 
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 
 	public List<LigneCommande> getListeLigneCommandes() {
@@ -146,8 +160,7 @@ public class Produit implements Serializable {
 	@Override
 	public String toString() {
 		return "Produit [idProduit=" + idProduit + ", designation=" + designation + ", description=" + description
-				+ ", prix=" + prix + ", quantite=" + quantite + ", selection=" + selection + ", photo=" + photo
-				+ ", listeLigneCommandes=" + listeLigneCommandes + "]";
+				+ ", prix=" + prix + ", quantite=" + quantite + ", selection=" + selection + ", photo=" + photo + "]";
 	}
 
 }
