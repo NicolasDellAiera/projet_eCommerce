@@ -54,7 +54,7 @@ public class LigneCommandeDaoImpl implements ILigneCommandeDao {
 		LigneCommande l_find=(LigneCommande) s.get(LigneCommande.class, l.getIdLigneCommande());
 		l_find=l;
 		s.merge(l_find);
-		return l
+		return l;
 	}
 
 	@Override
