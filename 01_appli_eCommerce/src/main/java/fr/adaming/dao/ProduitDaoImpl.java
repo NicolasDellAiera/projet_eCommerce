@@ -75,4 +75,13 @@ public class ProduitDaoImpl implements IProduitDao {
 		return null;
 	}
 
+	@Override
+	public List<Produit> getAllProducts() {
+		Session s=sf.getCurrentSession();
+		String req="from Produit p";
+		Query query=s.createQuery(req);
+		List<Produit> listeProduits=query.list();
+		return listeProduits;
+	}
+
 }
