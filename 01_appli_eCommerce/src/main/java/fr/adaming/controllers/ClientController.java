@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -46,14 +47,23 @@ public class ClientController {
 	public void setPrService(IProduitService prService) {
 		this.prService = prService;
 	}
-
+	
+	
+	//Methods
 	@RequestMapping(method=RequestMethod.GET)
-	public String afficherAccueil(ModelMap model) {
-		List<Categorie> listeCategories=catService.getAllCategory();
-		model.addAttribute("pCatListe", listeCategories);
-		List<Produit> listeProduits=prService.getAllProducts();
-		model.addAttribute("pPrListe", listeProduits);
+	public String afficherAccueil(ModelMap model) 
+	{
+		model.addAttribute("pCatListe", catService.getAllCategory());
+		model.addAttribute("pPrListe", prService.getAllProducts());
 		return "accueil";
 	}
 	
+	@RequestMapping(value="/afficherParCat/{nomCat}")
+	public String afficherAccueilCategorie(ModelMap model, @PathVariable("nomCat")String categorie)
+	{
+		Categorie cat = catService.getCategorieByName(categorie);
+		model.addAttribute("pCatListe", catService.getAllCategory());
+		model.addAttribute("pPrListe", prService.getAllProductsByCategory(cat));
+		return "accueil";
+	}
 }

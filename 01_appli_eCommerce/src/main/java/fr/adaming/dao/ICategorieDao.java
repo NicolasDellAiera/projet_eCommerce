@@ -7,5 +7,5 @@ import fr.adaming.entities.Categorie;
 public interface ICategorieDao {
 	
 	public List<Categorie> getAllCategory();
-
+	public Categorie getCategorieByName(String name);
 }

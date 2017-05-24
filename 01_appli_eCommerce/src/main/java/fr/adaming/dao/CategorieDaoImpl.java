@@ -34,4 +34,13 @@ public class CategorieDaoImpl implements ICategorieDao {
 		return listeCategories;
 	}
 
+	@Override
+	public Categorie getCategorieByName(String name) {
+		Session s = sf.openSession();
+		String req="FROM Categorie c WHERE c.nomCategorie=:pNom";
+		Query query = s.createQuery(req);
+		query.setParameter("pNom", name);
+		return (Categorie) query.uniqueResult();
+	}
+
 }
