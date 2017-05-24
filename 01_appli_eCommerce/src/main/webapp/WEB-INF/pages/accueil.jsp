@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-<!-- 	<script type="text/javascript" src="js/bootstrap.js"></script> -->
-
-	<link  href="<c:url value="/ressources/css/bootstrap.css"></c:url>" />
-		<link  href="<c:url value="/ressources/css/bootstrap-theme.css"></c:url>" />
-	<title>Page d'accueil</title>
+<link href="<c:url value="/resources/styles/bootstrap.css"></c:url>"
+	rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Page d'accueil</title>
 </head>
 
 <body>
@@ -48,14 +47,14 @@
 							<li><a href="editer">Modifier le profil</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="creer">Créer un profil</a></li>
-						</ul>
-					</li>
+						</ul></li>
 				</ul>
 				<form class="navbar-form navbar-left">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Search">
 					</div>
-					<button type="submit" class="btn btn-default">Rechercher<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+					<button type="submit" class="btn btn-default">Rechercher<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					</button>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="afficherPanier">Voir le panier</a></li>
@@ -65,8 +64,16 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-	
-	<div class="alert alert-success" role="alert">TEST ESSAI</div>
+
+	<!-- MENU CATEGORIES -->
+
+	<div class="btn-group btn-group-justified" role="group" aria-label="...">
+		<c:forEach var="cat" items="pCatListe">
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-default">${cat.nomCategorie}</button>
+			</div>
+		</c:forEach>
+	</div>
 
 	<%@include file="templates/footer.html"%>
 

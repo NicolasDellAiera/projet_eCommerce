@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller("/site")
 public class ClientController 
 {
+	//
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public String afficherAccueil(ModelMap model)
 	{
