@@ -9,8 +9,8 @@
 <head>
 <!-- 	<script type="text/javascript" src="js/bootstrap.js"></script> -->
 
-	<link type="text/css" rel="stylesheet" href="<c:url value="/ressources/css/bootstrap.css"></c:url>" />
-		<link type="text/css" rel="stylesheet" href="<c:url value="/ressources/css/bootstrap-theme.css"></c:url>" />
+	<link  href="<c:url value="/ressources/css/bootstrap.css"></c:url>" />
+		<link  href="<c:url value="/ressources/css/bootstrap-theme.css"></c:url>" />
 	<title>Page d'accueil</title>
 </head>
 
