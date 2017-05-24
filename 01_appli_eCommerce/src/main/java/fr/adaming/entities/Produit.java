@@ -46,8 +46,8 @@ public class Produit implements Serializable {
 	
 	//-----Associations-----//
 	
-	@OneToMany(mappedBy="produit", cascade=CascadeType.ALL)
-	private List<LigneCommande> listeLigneCommandes;
+//	@OneToMany(mappedBy="produit", cascade=CascadeType.ALL)
+//	private List<LigneCommande> listeLigneCommandes;
 	
 	@ManyToOne
 	@JoinColumn(name="categorie_id", referencedColumnName="idCategorie")
@@ -145,14 +145,6 @@ public class Produit implements Serializable {
 
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
-	}
-
-	public List<LigneCommande> getListeLigneCommandes() {
-		return listeLigneCommandes;
-	}
-
-	public void setListeLigneCommandes(List<LigneCommande> listeLigneCommandes) {
-		this.listeLigneCommandes = listeLigneCommandes;
 	}
 	
 	//-----Methode String-----//

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -35,7 +36,7 @@ public class LigneCommande implements Serializable {
 	@JoinColumn(name="commande_id", referencedColumnName="idCommande")
 	private Commande commande;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="produit_id", referencedColumnName="idProduit")
 	private Produit produit;
 	

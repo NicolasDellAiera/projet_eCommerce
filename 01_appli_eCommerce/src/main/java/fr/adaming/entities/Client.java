@@ -33,6 +33,9 @@ public class Client implements Serializable {
 	@Column(name="email")
 	private String email;
 	
+	@Column(name="mdp")
+	private String mdp;
+	
 	@Column(name="tel")
 	private String tel;
 	
@@ -46,18 +49,20 @@ public class Client implements Serializable {
 	public Client(){
 	}
 
-	public Client(String nomClient, String adresse, String email, String tel) {
+	public Client(String nomClient, String adresse, String email, String mdp, String tel) {
 		this.nomClient = nomClient;
 		this.adresse = adresse;
 		this.email = email;
+		this.mdp = mdp;
 		this.tel = tel;
 	}
 
-	public Client(long idClient, String nomClient, String adresse, String email, String tel) {
+	public Client(long idClient, String nomClient, String adresse, String email,  String mdp, String tel) {
 		this.idClient = idClient;
 		this.nomClient = nomClient;
 		this.adresse = adresse;
 		this.email = email;
+		this.mdp = mdp;
 		this.tel = tel;
 	}
 
@@ -95,6 +100,14 @@ public class Client implements Serializable {
 		this.email = email;
 	}
 
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+
 	public String getTel() {
 		return tel;
 	}
@@ -114,10 +127,9 @@ public class Client implements Serializable {
 	//-----Methode String-----//
 	
 	@Override
-	public String toString() 
-	{
+	public String toString() {
 		return "Client [idClient=" + idClient + ", nomClient=" + nomClient + ", adresse=" + adresse + ", email=" + email
-				+ ", tel=" + tel + "]";
+				+ ", mdp=" + mdp + ", tel=" + tel + "]";
 	}
 	
 }
