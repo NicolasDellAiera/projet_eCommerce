@@ -1,17 +1,48 @@
 package fr.adaming.entities;
 
-public class Client 
-{
-	//Attributes
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="clients")
+
+public class Client implements Serializable {
+	
+	//-----Attributes-----//
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="idClient")
 	private long idClient;
+	
+	@Column(name="nomClient")
 	private String nomClient;
+	
+	@Column(name="adresse")
 	private String adresse;
+	
+	@Column(name="email")
 	private String email;
+	
+	@Column(name="tel")
 	private String tel;
 	
-	//Associations
+	//-----Associations-----//
 	
-	//Constructors
+	@OneToMany(mappedBy="client", cascade=CascadeType.ALL)
+	private List<Commande> listeCommandes;
+	
+	//-----Constructeurs-----//
+	
 	public Client(){
 	}
 
@@ -30,7 +61,8 @@ public class Client
 		this.tel = tel;
 	}
 
-	//Getters and setters
+	//-----Getetrs et Setters-----//
+	
 	public long getIdClient() {
 		return idClient;
 	}
@@ -71,7 +103,16 @@ public class Client
 		this.tel = tel;
 	}
 	
-	//Methods
+	public List<Commande> getListeCommandes() {
+		return listeCommandes;
+	}
+
+	public void setListeCommandes(List<Commande> listeCommandes) {
+		this.listeCommandes = listeCommandes;
+	}
+
+	//-----Methode String-----//
+	
 	@Override
 	public String toString() 
 	{
