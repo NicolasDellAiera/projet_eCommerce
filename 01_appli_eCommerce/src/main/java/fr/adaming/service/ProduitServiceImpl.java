@@ -41,4 +41,9 @@ public class ProduitServiceImpl implements IProduitService {
 		return prDAO.getProduct(id);
 	}
 
+	@Override
+	public List<Produit> getAllProducts() {
+		return prDAO.getAllProducts();
+	}
+
 }
