@@ -2,7 +2,9 @@ package fr.adaming.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,6 +38,9 @@ public class Commande implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="client_id", referencedColumnName="idClient")
 	private Client client;
+	
+	@OneToMany(mappedBy="commande", cascade=CascadeType.ALL)
+	private List<LigneCommande> listeLigneCommandes;
 	
 	//-----Constructeurs-----//
 	
@@ -77,6 +83,14 @@ public class Commande implements Serializable {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+	
+	public List<LigneCommande> getListeLigneCommandes() {
+		return listeLigneCommandes;
+	}
+
+	public void setListeLigneCommandes(List<LigneCommande> listeLigneCommandes) {
+		this.listeLigneCommandes = listeLigneCommandes;
 	}
 	
 	//-----Methode String-----//
