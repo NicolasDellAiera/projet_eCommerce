@@ -30,7 +30,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="site">Accueil</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/site">Accueil</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -41,12 +41,12 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Profil<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="seConnecter">Connection</a></li>
-							<li><a href="seDeconnecter">Déconnection</a></li>
+							<li><a href="${pageContext.request.contextPath}/seConnecter">Connection</a></li>
+							<li><a href="${pageContext.request.contextPath}/seDeconnecter">Déconnection</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="editer">Modifier le profil</a></li>
+							<li><a href="${pageContext.request.contextPath}/editerClient">Modifier le profil</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="creer">Créer un profil</a></li>
+							<li><a href="${pageContext.request.contextPath}/creerClient">Créer un profil</a></li>
 						</ul></li>
 				</ul>
 				<form class="navbar-form navbar-left">
