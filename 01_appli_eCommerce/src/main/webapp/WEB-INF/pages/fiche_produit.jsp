@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+	
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <!DOCTYPE html>
 <html>
@@ -11,13 +12,13 @@
 	<script type="text/javascript" src="<c:url value="/ressources/js/jquery-3.2.1.js"></c:url>"></script>
 	<link href="<c:url value="/ressources/styles/bootstrap.css"></c:url>" rel="stylesheet" />
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Page d'accueil</title>
+	<title>Fiche Produit</title>
 </head>
 
 <body>
 
 	<%@include file="templates/header.html"%>
-
+	
 	<!-- MENU -->
 
 	<nav class="navbar navbar-default">
@@ -68,26 +69,42 @@
 			</div>
 		</c:forEach>
 	</div>
-	
-	<!-- TABLE PRODUITS -->
+
+	<!-- FICHE PRODUIT -->
 	
 	<div style="width: 80%; margin:auto">
-	<c:forEach var="prod" items="${pPrListe}">
-	<ul class="media-list">
-  		<li class="media">
-    		<div class="media-left">
-      			<a href="${pageContext.request.contextPath}/site/afficherFicheProd/${prod.idProduit}">
-        			<img class="media-object" src="/01_appli_eCommerce/ressources/images/legume.jpg" alt="legumes">
-     			</a>
-    		</div>
-    		<div class="media-body">
-      			<h4 class="media-heading">${prod.designation}</h4>
-      			<p>Prix unitaire : ${prod.prix} <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></p>
-    		</div>
-  		</li>
-	</ul>
-	</c:forEach>
+		<img class="media-object" src="/01_appli_eCommerce/ressources/images/legume.jpg" alt="legumes">
+		<table class="table table-hover">
+			<tr>
+				<th>Designation</th>
+				<td>${pProduit.designation}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>${pProduit.description}</td>
+			</tr>
+			<tr>
+				<th>Categorie</th>
+				<td>${pProduit.categorie.nomCategorie}</td>
+			</tr>
+			<tr>
+				<th>Prix</th>
+				<td>${pProduit.prix}</td>
+			</tr>
+		</table>
 	</div>
+	
+	<form:form action="ajouterAuPanier" method="post" modelAttribute="mLigneCommande">
+		<table width="80%" align="center">
+			<tr>
+				<td><form:label path="quantite">Quantité :</form:label></td>
+				<td><form:input path="quantite"></form:input></td>
+
+			<tr>
+				<td><form:button type="submit" cssClass="btn btn-default">Ajouter au panier</form:button></td>
+			</tr>
+		</table>
+	</form:form>
 
 	<%@include file="templates/footer.html"%>
 

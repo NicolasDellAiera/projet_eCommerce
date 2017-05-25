@@ -32,7 +32,7 @@ public class ProduitDaoImpl implements IProduitDao {
 	@Override
 	public List<Produit> getAllProductsByCategory(Categorie c) {
 		Session s=sf.getCurrentSession();
-		String req="from Produit p where p.categorie.nomCategorie=:pCategorie";
+		String req="FROM Produit p WHERE p.categorie.nomCategorie=:pCategorie ORDER BY p.designation ASC";
 		Query query=s.createQuery(req);
 		query.setParameter("pCategorie", c.getNomCategorie());
 		List<Produit> listeProduitsParCategorie=query.list();
@@ -56,29 +56,36 @@ public class ProduitDaoImpl implements IProduitDao {
 		int i=0;
 		int j=0;
 		
-		for (Produit P1:listeProduitParNom) {
-			listeProduits.add(listeProduitParNom.get(i));
-			i++;
-		}
-		for (Produit P2:listeProduitParMotCle) {
-			listeProduits.add(listeProduitParMotCle.get(j));
-			i++;
+		if(listeProduitParNom!=null)
+		{
+			for (Produit P1:listeProduitParNom) {
+				listeProduits.add(listeProduitParNom.get(i));
+				i++;
+			}
 		}
 		
-		return listeProduitParMotCle;
+		if(listeProduitParNom!=null)
+		{
+			for (Produit P2:listeProduitParMotCle) {
+				listeProduits.add(listeProduitParMotCle.get(j));
+				i++;
+			}
+		}
+		
+		return listeProduits;
 	}
 
 	@Override
 	public Produit getProduct(int id) {
 		Session s=sf.getCurrentSession();
 		Produit p=(Produit) s.get(Produit.class, id);
-		return null;
+		return p;
 	}
 
 	@Override
 	public List<Produit> getAllProducts() {
 		Session s=sf.getCurrentSession();
-		String req="from Produit p";
+		String req="FROM Produit p ORDER BY p.designation ASC";
 		Query query=s.createQuery(req);
 		List<Produit> listeProduits=query.list();
 		return listeProduits;
