@@ -44,12 +44,15 @@ public class ProduitDaoImpl implements IProduitDao {
 		Session s=sf.getCurrentSession();
 		
 		Criteria cr1=s.createCriteria(Produit.class);
-		cr1.add(Restrictions.eq("designation", "%" + keyWord + "%"));
+		cr1.add(Restrictions.like("designation", "%" + keyWord + "%"));
 		List<Produit> listeProduitParNom=cr1.list();
 		
 		Criteria cr2=s.createCriteria(Produit.class);
-		cr2.add(Restrictions.eq("description", "%" + keyWord + "%"));
+		cr2.add(Restrictions.like("description", "%" + keyWord + "%"));
 		List<Produit> listeProduitParMotCle=cr2.list();
+		
+		System.out.println("--------liste1 " + listeProduitParNom);
+		System.out.println("--------liste2 " + listeProduitParMotCle);
 		
 		List<Produit> listeProduits=new ArrayList<Produit>();
 		
@@ -68,7 +71,7 @@ public class ProduitDaoImpl implements IProduitDao {
 		{
 			for (Produit P2:listeProduitParMotCle) {
 				listeProduits.add(listeProduitParMotCle.get(j));
-				i++;
+				j++;
 			}
 		}
 		

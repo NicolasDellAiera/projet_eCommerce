@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <!DOCTYPE html>
 <html>
@@ -27,9 +28,7 @@
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
 					aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="${pageContext.request.contextPath}/site">Accueil <span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
 			</div>
@@ -38,18 +37,16 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="${pageContext.request.contextPath}/seConnecter">Connection <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
-					<li><a href="${pageContext.request.contextPath}/seDeconnecter">Déconnection <span class="glyphicon glyphicon-off" aria-hidden="true"></span></a></li>
-					<li><a href="${pageContext.request.contextPath}/editerClient">Modifier le profil</a></li>
-					<li><a href="${pageContext.request.contextPath}/creerClient">Créer un profil</a></li>
+					<li><a href="${pageContext.request.contextPath}/site/seConnecter">Connexion <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
+					<li><a href="${pageContext.request.contextPath}/site/seDeconnecter">Déconnexion <span class="glyphicon glyphicon-off" aria-hidden="true"></span></a></li>
+					<li><a href="${pageContext.request.contextPath}/site/editerClient">Modifier le profil</a></li>
+					<li><a href="${pageContext.request.contextPath}/site/creerClient">Créer un profil</a></li>
 				</ul>
-				<form class="navbar-form navbar-left">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
-					</div>
-					<button type="submit" class="btn btn-default">Rechercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					</button>
-				</form>
+				<form:form cssStyle="navbar-form navbar-left" method="POST" modelAttribute="pKeyWord" action="${pageContext.request.contextPath}/site/afficherParKeyWord">
+					<form:input path="designation" cssStyle="form-control"></form:input>
+					<form:button type="submit" cssStyle="btn btn-default" >Rechercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					</form:button>
+				</form:form>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="afficherPanier">Voir le panier <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
 				</ul>

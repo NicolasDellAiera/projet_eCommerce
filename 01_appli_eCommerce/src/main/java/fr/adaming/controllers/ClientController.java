@@ -58,6 +58,7 @@ public class ClientController {
 	{
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProducts());
+		model.addAttribute("pKeyWord", new Produit());
 		return "accueil";
 	}
 	
@@ -67,6 +68,19 @@ public class ClientController {
 		Categorie cat = catService.getCategorieByName(categorie);
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProductsByCategory(cat));
+		model.addAttribute("pKeyWord", new Produit());
+		return "accueil";
+	}
+	
+	@RequestMapping(value="/afficherParKeyWord", method=RequestMethod.POST)
+	public String afficherAccueilMotCle(ModelMap model, @ModelAttribute("pKeyWord")Produit prod)
+	{
+		String motCle = prod.getDesignation();
+		System.out.println("--------Mot Clé " + motCle);
+		System.out.println("--------liste total : " + prService.getAllProductsByKeyWord(motCle));
+		model.addAttribute("pCatListe", catService.getAllCategory());
+		model.addAttribute("pPrListe", prService.getAllProductsByKeyWord(motCle));
+		model.addAttribute("pKeyWord", new Produit());
 		return "accueil";
 	}
 	
@@ -76,6 +90,7 @@ public class ClientController {
 		Produit p = prService.getProduct(id);
 		model.addAttribute("pProduit", p);
 		model.addAttribute("pCatListe", catService.getAllCategory());
+		model.addAttribute("pKeyWord", new Produit());
 	
 		model.addAttribute("mLigneCommande", new LigneCommande());
 		return "fiche_produit";
