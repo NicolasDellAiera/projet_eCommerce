@@ -64,7 +64,7 @@ public class ProduitDaoImpl implements IProduitDao {
 			}
 		}
 		
-		if(listeProduitParNom!=null)
+		if(listeProduitParMotCle!=null)
 		{
 			for (Produit P2:listeProduitParMotCle) {
 				listeProduits.add(listeProduitParMotCle.get(j));
