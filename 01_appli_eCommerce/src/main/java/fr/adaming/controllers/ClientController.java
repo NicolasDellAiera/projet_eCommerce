@@ -1,6 +1,7 @@
 package fr.adaming.controllers;
 
 import java.util.List;
+import java.util.Properties;
 
 import javax.annotation.PostConstruct;
 
@@ -91,6 +92,7 @@ public class ClientController
 		model.addAttribute("pPrListe", prService.getAllProducts());
 		model.addAttribute("pKeyWord", new Produit());
 		model.addAttribute("pClient", this.client);
+		model.addAttribute("pPrixPanier", this.panier.getMontant());
 		return "accueil";
 	}
 	
@@ -101,6 +103,7 @@ public class ClientController
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProductsByCategory(cat));
 		model.addAttribute("pKeyWord", new Produit());
+		model.addAttribute("pPrixPanier", this.panier.getMontant());
 		return "accueil";
 	}
 	
@@ -111,19 +114,8 @@ public class ClientController
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProductsByKeyWord(motCle));
 		model.addAttribute("pKeyWord", new Produit());
+		model.addAttribute("pPrixPanier", this.panier.getMontant());
 		return "accueil";
-	}
-	
-	@RequestMapping(value="/afficherFicheProd/{idProduit}", method=RequestMethod.GET)
-	public String afficherFicheProduit(ModelMap model, @PathVariable("idProduit")int id)
-	{
-		Produit p = prService.getProduct(id);
-		model.addAttribute("pProduit", p);
-		model.addAttribute("pCatListe", catService.getAllCategory());
-		model.addAttribute("pKeyWord", new Produit());
-	
-		model.addAttribute("mLigneCommande", new LigneCommande());
-		return "fiche_produit";
 	}
 	
 	@RequestMapping(value="/afficherFormConnexion", method=RequestMethod.GET)
@@ -131,6 +123,7 @@ public class ClientController
 	{
 		ModelAndView mav = new ModelAndView("formulaire_connexion_client", "mClient", new Client());
 		mav.addObject("pKeyWord", new Produit());
+		mav.addObject("pPrixPanier", this.panier.getMontant());
 		return mav;
 	}
 	
@@ -138,8 +131,6 @@ public class ClientController
 	public String soumettreFormulaireConnexionClient(ModelMap model, @ModelAttribute("mClient")Client client)
 	{
 		Client clientRetour = cltService.isExist(client);
-		System.out.println("------Retour de la connexion : " + client);
-		System.out.println("------Retour de la base données : " + clientRetour);
 		if(clientRetour!=null)
 		{
 			this.client=clientRetour;
@@ -147,12 +138,14 @@ public class ClientController
 			model.addAttribute("pPrListe", prService.getAllProducts());
 			model.addAttribute("pKeyWord", new Produit());
 			model.addAttribute("pClient", this.client);
+			model.addAttribute("pPrixPanier", this.panier.getMontant());
 			return "accueil";
 		}
 		else
 		{
 			String message="Identifiant ou mot de passe incorrect. Veuillez réessayer ou vous créer un compte si vous n'en avez pas un.";
 			model.addAttribute("pKeyWord", new Produit());
+			model.addAttribute("pPrixPanier", this.panier.getMontant());
 			model.addAttribute("msgErreur", message);
 			return "formulaire_connexion_client";
 		}
@@ -169,6 +162,7 @@ public class ClientController
 		}
 		ModelAndView mav = new ModelAndView("formulaire_edit_client", "mCLientEdit", clientForm);
 		mav.addObject("pKeyWord", new Produit());
+		mav.addObject("pPrixPanier", this.panier.getMontant());
 		return mav;
 	}
 	
@@ -176,12 +170,31 @@ public class ClientController
 	public String soumettreFormulaireEditionClient(@ModelAttribute("mCLientEdit")Client clientForm, ModelMap model)
 	{
 		System.out.println("---------Retour du formulaire d'édition : " + clientForm);
-		this.client = cltService.editClient(clientForm);
-		model.addAttribute("pCatListe", catService.getAllCategory());
-		model.addAttribute("pPrListe", prService.getAllProducts());
-		model.addAttribute("pKeyWord", new Produit());
-		model.addAttribute("pClient", this.client);
-		return "accueil";
+		Client clientBdd = cltService.isExist(clientForm);
+		if(clientBdd != null && clientForm.getIdClient() == 0)
+		{
+			Client clientFormRenvoi = new Client();
+			if(this.client != null)
+			{
+				clientFormRenvoi = this.client;
+			}
+			String message = "Les données rentrées correspondent déjà à un client.";
+			model.addAttribute("mCLientEdit", clientFormRenvoi);
+			model.addAttribute("pKeyWord", new Produit());
+			model.addAttribute("pPrixPanier", this.panier.getMontant());
+			model.addAttribute("msgErreur", message);
+			return "formulaire_edit_client";
+		}
+		else
+		{
+			this.client = cltService.editClient(clientForm);
+			model.addAttribute("pCatListe", catService.getAllCategory());
+			model.addAttribute("pPrListe", prService.getAllProducts());
+			model.addAttribute("pKeyWord", new Produit());
+			model.addAttribute("pPrixPanier", this.panier.getMontant());
+			model.addAttribute("pClient", this.client);
+			return "accueil";
+		}	
 	}
 	
 	@RequestMapping(value="/seDeconnecter", method=RequestMethod.GET)
@@ -191,16 +204,61 @@ public class ClientController
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProducts());
 		model.addAttribute("pKeyWord", new Produit());
+		model.addAttribute("pPrixPanier", this.panier.getMontant());
 		return "accueil";
 	}
 	
+	@RequestMapping(value="/afficherFicheProd/{idProduit}", method=RequestMethod.GET)
+	public String afficherFicheProduit(ModelMap model, @PathVariable("idProduit")int id)
+	{
+		Produit p = prService.getProduct(id);
+		model.addAttribute("pProduit", p);
+		model.addAttribute("pCatListe", catService.getAllCategory());
+		model.addAttribute("pKeyWord", new Produit());
+		model.addAttribute("pPrixPanier", this.panier.getMontant());
+	
+		model.addAttribute("mLigneCommande", new LigneCommande());
+		return "fiche_produit";
+	}
+	
 	@RequestMapping(value="/ajouterAuPanier/{idProduit}", method=RequestMethod.POST)
-	public String ajouterLigneCommandePanier(@ModelAttribute("mLigneCommande")LigneCommande lc,  @PathVariable("idProduit")int id)
+	public String ajouterLigneCommandePanier(@ModelAttribute("mLigneCommande")LigneCommande lc, @PathVariable("idProduit")int id, ModelMap model)
 	{
 		lc.setProduit(prService.getProduct(id));
-		lc.setPrix(lc.getProduit().getPrix()*lc.getQuantite());
+		double lcPrix = lc.getProduit().getPrix()*lc.getQuantite();
+		lc.setPrix((double)Math.round(lcPrix*100)/100);
+		
 		this.panier.getListeLignesCommande().add(lc);
-		System.out.println("-------Ligne commande : " + lc);
+		this.panier.setMontant(this.panier.getMontant()+lc.getPrix());
+		
+		model.addAttribute("mPanier", this.panier);
+		model.addAttribute("pCatListe", catService.getAllCategory());
+		model.addAttribute("pKeyWord", new Produit());
+		model.addAttribute("pPrixPanier", this.panier.getMontant());
+		return "panier";
+	}
+
+	@RequestMapping(value="/afficherPanier", method=RequestMethod.GET)
+	public String afficherPanier(ModelMap model)
+	{
+		model.addAttribute("mPanier", this.panier);
+		model.addAttribute("pCatListe", catService.getAllCategory());
+		model.addAttribute("pKeyWord", new Produit());
+		model.addAttribute("pPrixPanier", this.panier.getMontant());
+		return "panier";
+	}
+	
+	@RequestMapping(value="/retirerDuPanier/{indexLigneCommande}")
+	public String retirerLigneCommandePanier(ModelMap model, @PathVariable("indexLigneCommande")int indexLc)
+	{
+		double montant = this.panier.getMontant()-this.panier.getListeLignesCommande().get(indexLc).getPrix();
+		this.panier.setMontant((double)Math.round(montant*100)/100);
+		this.panier.getListeLignesCommande().remove(indexLc);
+		
+		model.addAttribute("mPanier", this.panier);
+		model.addAttribute("pCatListe", catService.getAllCategory());
+		model.addAttribute("pKeyWord", new Produit());
+		model.addAttribute("pPrixPanier", this.panier.getMontant());
 		return "panier";
 	}
 }

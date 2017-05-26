@@ -48,7 +48,10 @@
 					</form:button>
 				</form:form>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="afficherPanier">Voir le panier <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
+					<li><a href="${pageContext.request.contextPath}/site/afficherPanier">Voir le panier <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
+					<c:if test="${pPrixPanier != 0}">	
+						<li>${pPrixPanier} <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></li>
+					</c:if>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -66,10 +69,12 @@
 		</c:forEach>
 	</div>
 	
+	<br/>
+	
 	<!-- SALUTATION CLIENT -->
 	
 	<c:if test="${pClient != null}">
-		<h3>Bonjour ${pClient.nomClient}. Ravi de vous revoir.</h3>
+		<h4 style="width:90%; margin:auto">Bonjour ${pClient.nomClient}. Ravi de vous revoir !</h4>
 	</c:if>
 
 </body>

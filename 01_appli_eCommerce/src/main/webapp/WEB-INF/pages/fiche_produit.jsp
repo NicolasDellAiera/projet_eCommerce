@@ -29,12 +29,16 @@
 				<td>${pProduit.designation}</td>
 			</tr>
 			<tr>
-				<th>Description</th>
+				<th>Description du produit</th>
 				<td>${pProduit.description}</td>
 			</tr>
 			<tr>
 				<th>Categorie</th>
 				<td>${pProduit.categorie.nomCategorie}</td>
+			</tr>
+			<tr>
+				<th>Description de la catégorie</th>
+				<td>${pProduit.categorie.description}</td>
 			</tr>
 			<tr>
 				<th>Prix</th>
