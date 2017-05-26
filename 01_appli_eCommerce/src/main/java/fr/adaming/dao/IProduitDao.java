@@ -14,5 +14,11 @@ public interface IProduitDao {
 	public List<Produit> getAllProductsByKeyWord(String keyWord);
 	
 	public Produit getProduct(int id);
+	
+	public Produit createProduct(Produit p);
+	
+	public Produit updateProduct(Produit p);
+	
+	public void deleteProduct(int id);
 
 }

@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.adaming.dao.ICategorieDao;
 import fr.adaming.entities.Categorie;
 
-@Service("catService")
+@Service
 @Transactional
 
 public class CategorieServiceImpl implements ICategorieService 
@@ -22,7 +22,6 @@ public class CategorieServiceImpl implements ICategorieService
 		return catDAO;
 	}
 	
-	//Getters and setters
 	public void setCatDAO(ICategorieDao catDAO) {
 		this.catDAO = catDAO;
 	}
@@ -34,8 +33,28 @@ public class CategorieServiceImpl implements ICategorieService
 	}
 
 	@Override
-	public Categorie getCategorieByName(String name) {
-		return catDAO.getCategorieByName(name);
+	public Categorie getCategorieByID(int id) {
+		return catDAO.getCategorieByID(id);
+	}
+	
+	@Override
+	public Categorie getCategorieByName(String nom) {
+		return catDAO.getCategorieByName(nom);
+	}
+
+	@Override
+	public Categorie createCategory(Categorie cat) {
+		return catDAO.createCategory(cat);
+	}
+
+	@Override
+	public void deleteCategorie(int id) {
+		catDAO.deleteCategorie(id);
+	}
+
+	@Override
+	public Categorie updateCategory(Categorie cat) {
+		return catDAO.updateCategory(cat);
 	}
 
 }

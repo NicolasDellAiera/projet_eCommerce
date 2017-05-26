@@ -46,4 +46,19 @@ public class ProduitServiceImpl implements IProduitService {
 		return prDAO.getAllProducts();
 	}
 
+	@Override
+	public Produit createProduct(Produit p) {
+		return prDAO.createProduct(p);
+	}
+
+	@Override
+	public Produit updateProduct(Produit p) {
+		return prDAO.updateProduct(p);
+	}
+
+	@Override
+	public void deleteProduct(int id) {
+		prDAO.deleteProduct(id);
+	}
+
 }

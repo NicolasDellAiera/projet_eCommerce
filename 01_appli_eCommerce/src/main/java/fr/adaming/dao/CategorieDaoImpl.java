@@ -35,12 +35,43 @@ public class CategorieDaoImpl implements ICategorieDao {
 	}
 
 	@Override
-	public Categorie getCategorieByName(String name) {
+	public Categorie getCategorieByID(int id) {
 		Session s = sf.openSession();
-		String req="FROM Categorie c WHERE c.nomCategorie=:pNom";
-		Query query = s.createQuery(req);
-		query.setParameter("pNom", name);
-		return (Categorie) query.uniqueResult();
+		Categorie cat=(Categorie) s.get(Categorie.class, id);
+		return cat;
+	}
+	
+	@Override
+	public Categorie getCategorieByName(String nom) {
+		Session s = sf.openSession();
+		String req="FROM Categorie c WHERE c.nomCategorie=:pCategorie";
+		Query query=s.createQuery(req);
+		query.setParameter("pCategorie", nom);
+		Categorie cat=(Categorie) query.uniqueResult();
+		return cat;
+	}
+
+	@Override
+	public Categorie createCategory(Categorie cat) {
+		Session s = sf.openSession();
+		s.save(cat);
+		return cat;
+	}
+
+	@Override
+	public void deleteCategorie(int id) {
+		Session s = sf.getCurrentSession();
+		Categorie cat_rem=(Categorie) s.get(Categorie.class, id);
+		s.delete(cat_rem);
+	}
+
+	@Override
+	public Categorie updateCategory(Categorie cat) {
+		Session s = sf.getCurrentSession();
+		Categorie cat_find=(Categorie) s.get(Categorie.class, cat.getIdCategorie());
+		cat_find=cat;
+		s.merge(cat_find);
+		return cat;
 	}
 
 }

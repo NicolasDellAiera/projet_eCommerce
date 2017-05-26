@@ -94,4 +94,27 @@ public class ProduitDaoImpl implements IProduitDao {
 		return listeProduits;
 	}
 
+	@Override
+	public Produit createProduct(Produit p) {
+		Session s = sf.openSession();
+		s.save(p);
+		return p;
+	}
+
+	@Override
+	public Produit updateProduct(Produit p) {
+		Session s = sf.getCurrentSession();
+		Produit p_find=(Produit) s.get(Produit.class, p.getIdProduit());
+		p_find=p;
+		s.merge(p_find);
+		return p;
+	}
+
+	@Override
+	public void deleteProduct(int id) {
+		Session s = sf.getCurrentSession();
+		Produit p_rem=(Produit) s.get(Produit.class, id);
+		s.delete(p_rem);
+	}
+
 }
