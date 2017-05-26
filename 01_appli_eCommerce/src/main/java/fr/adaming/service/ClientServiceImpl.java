@@ -7,14 +7,23 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.adaming.dao.IClientDao;
 import fr.adaming.entities.Client;
 
+/**
+ * Cette classe de la couche SERVICE permet à un client du site e-commerce de gérer son compte
+ * La méthode editCLient(Client c) lui permet soit de créer un compte, soit de le modifier s'il en a déjà un.
+ * La méthode isExist(Client c) permet de vérifier, lorsqu'un client se connecte, qu'il existe bien dans la base de données
+ * @author Nicolas Dell'Aiera
+ *
+ */
+
 @Service("clService")
 @Transactional
-
-public class ClientServiceImpl implements IClientService {
-	
+public class ClientServiceImpl implements IClientService 
+{
+	//Attributes
 	@Autowired
 	private IClientDao clDAO;
 
+	//Getters and setters
 	public IClientDao getClDAO() {
 		return clDAO;
 	}
@@ -23,9 +32,17 @@ public class ClientServiceImpl implements IClientService {
 		this.clDAO = clDAO;
 	}
 
+	//Methods
 	@Override
-	public Client isExist(Client c) {
+	public Client isExist(Client c) 
+	{
 		return clDAO.isExist(c);
+	}
+
+	@Override
+	public Client editClient(Client c) 
+	{	
+		return clDAO.editClient(c);
 	}
 
 }

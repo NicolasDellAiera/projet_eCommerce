@@ -80,7 +80,6 @@ public class ClientController
 	@PostConstruct
 	public void initialiser()
 	{
-		client = new Client();
 		panier = new Panier();
 	}
 	
@@ -139,8 +138,8 @@ public class ClientController
 	public String soumettreFormulaireConnexionClient(ModelMap model, @ModelAttribute("mClient")Client client)
 	{
 		Client clientRetour = cltService.isExist(client);
-		System.out.println("------Retour de la connexion" + client);
-		System.out.println("------Retour de la base données" + clientRetour);
+		System.out.println("------Retour de la connexion : " + client);
+		System.out.println("------Retour de la base données : " + clientRetour);
 		if(clientRetour!=null)
 		{
 			this.client=clientRetour;
@@ -159,10 +158,36 @@ public class ClientController
 		}
 	}
 	
+	@RequestMapping(value="/afficherFormEdit", method=RequestMethod.GET)
+	public ModelAndView afficherFormulaireEditionCLient()
+	{
+		Client clientForm = new Client();
+		System.out.println("---------Client du controleur : "+this.client);
+		if(this.client != null)
+		{
+			clientForm = this.client;
+		}
+		ModelAndView mav = new ModelAndView("formulaire_edit_client", "mCLientEdit", clientForm);
+		mav.addObject("pKeyWord", new Produit());
+		return mav;
+	}
+	
+	@RequestMapping(value="/soumettreFormEdition", method=RequestMethod.POST)
+	public String soumettreFormulaireEditionClient(@ModelAttribute("mCLientEdit")Client clientForm, ModelMap model)
+	{
+		System.out.println("---------Retour du formulaire d'édition : " + clientForm);
+		this.client = cltService.editClient(clientForm);
+		model.addAttribute("pCatListe", catService.getAllCategory());
+		model.addAttribute("pPrListe", prService.getAllProducts());
+		model.addAttribute("pKeyWord", new Produit());
+		model.addAttribute("pClient", this.client);
+		return "accueil";
+	}
+	
 	@RequestMapping(value="/seDeconnecter", method=RequestMethod.GET)
 	public String deconnecterClient(ModelMap model)
 	{
-		this.client = new Client();
+		this.client = null;
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProducts());
 		model.addAttribute("pKeyWord", new Produit());

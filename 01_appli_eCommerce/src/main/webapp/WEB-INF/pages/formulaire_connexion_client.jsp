@@ -35,7 +35,9 @@
 	</form:form>
 	
 	<c:if test="${msgErreur != null}">
-		<div class="alert alert-danger" role="alert">${msgErreur}</div>
+		<div class="alert alert-danger" role="alert" style="width:80%; margins:auto">
+			${msgErreur}
+		</div>
 	</c:if>
 	
 	<%@include file="templates/footer.html"%>

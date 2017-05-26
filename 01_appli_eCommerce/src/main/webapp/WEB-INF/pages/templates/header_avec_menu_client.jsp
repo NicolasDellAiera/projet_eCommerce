@@ -39,8 +39,8 @@
 				<ul class="nav navbar-nav">
 					<li><a href="${pageContext.request.contextPath}/site/afficherFormConnexion">Connexion <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
 					<li><a href="${pageContext.request.contextPath}/site/seDeconnecter">Déconnexion <span class="glyphicon glyphicon-off" aria-hidden="true"></span></a></li>
-					<li><a href="${pageContext.request.contextPath}/site/afficherFormEdit">Modifier le profil</a></li>
-					<li><a href="${pageContext.request.contextPath}/site/afficherFormCreation">Créer un profil</a></li>
+					<li><a href="${pageContext.request.contextPath}/site/afficherFormEdit">Modifier le profil <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a></li>
+<%-- 					<li><a href="${pageContext.request.contextPath}/site/afficherFormCreation">Créer un profil</a></li> --%>
 				</ul>
 				<form:form cssStyle="navbar-form navbar-left" method="POST" modelAttribute="pKeyWord" action="${pageContext.request.contextPath}/site/afficherParKeyWord">
 					<form:input path="designation" cssStyle="form-control"></form:input>
@@ -68,7 +68,7 @@
 	
 	<!-- SALUTATION CLIENT -->
 	
-	<c:if test="${pClient.nomClient != null}">
+	<c:if test="${pClient != null}">
 		<h3>Bonjour ${pClient.nomClient}. Ravi de vous revoir.</h3>
 	</c:if>
 
