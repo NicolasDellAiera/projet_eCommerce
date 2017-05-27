@@ -19,6 +19,7 @@ import fr.adaming.entities.Admin;
 import fr.adaming.entities.Categorie;
 import fr.adaming.entities.LigneCommande;
 import fr.adaming.entities.Produit;
+import fr.adaming.service.IAdminService;
 import fr.adaming.service.ICategorieService;
 import fr.adaming.service.IProduitService;
 
@@ -32,6 +33,8 @@ public class AdminCatController {
 	private ICategorieService catService;
 	@Autowired
 	private IProduitService prService;
+	@Autowired
+	private IAdminService admService;
 	
 	//Getters and setters
 	public ICategorieService getCatService() {
@@ -45,6 +48,12 @@ public class AdminCatController {
 	}
 	public void setPrService(IProduitService prService) {
 		this.prService = prService;
+	}
+	public IAdminService getAdmService() {
+		return admService;
+	}
+	public void setAdmService(IAdminService admService) {
+		this.admService = admService;
 	}
 	
 	//Methods
@@ -180,5 +189,66 @@ public class AdminCatController {
 		model.addAttribute("pKeyWord", new Produit());
 		return mav;
 	}
+	
+	@RequestMapping(value="/listeAdmin", method=RequestMethod.GET)
+	public String listeAdminProd(ModelMap model) {
+		List<Admin> listeAdminProds=admService.getAllAdminProd();
+		model.addAttribute("pListeAdmin", listeAdminProds);
+		model.addAttribute("pCatListe", catService.getAllCategory());
+		model.addAttribute("pKeyWord", new Produit());
+		return "listeAdminProds";
+	}
+	
+	@RequestMapping(value="/formulaireAjoutAdmin", method=RequestMethod.GET)
+	public ModelAndView formulaireAjoutAdmin() {
+		ModelAndView mav=new ModelAndView("formulaireAjoutAdmin", "mAdmin", new Admin());
+		mav.addObject("pKeyWord", new Produit());
+		mav.addObject("pCatListe", catService.getAllCategory());
+		return mav;
+	}
+	
+	@RequestMapping(value="/ajoutAdmin", method=RequestMethod.POST)
+	public String soumettreFormulaireAjoutAdmin(ModelMap model, @ModelAttribute("mAdmin") Admin pAdmin) {
+		admService.createAdminProd(pAdmin);
+		admService.linkAdminRole(pAdmin.getIdAdmin());
+		model.addAttribute("pCatListe", catService.getAllCategory());
+		model.addAttribute("pKeyWord", new Produit());
+		List<Admin> listeAdminProds=admService.getAllAdminProd();
+		model.addAttribute("pListeAdmin", listeAdminProds);
+		return "listeAdminProds";
+	}
+	
+	@RequestMapping(value="/formulaireModifierAdmin", method=RequestMethod.GET)
+	public ModelAndView formulaireModifierAdmin(ModelMap model, @RequestParam("idAdmin")long id) {
+		Admin ad=admService.getAdminById(id);
+		ModelAndView mav=new ModelAndView("formulaireModifierAdmin", "mAdmin2", new Admin());
+		model.addAttribute("pAdmin", ad);
+		mav.addObject("pKeyWord", new Produit());
+		mav.addObject("pCatListe", catService.getAllCategory());
+		return mav;
+	}
+	
+	@RequestMapping(value="/modifierAdmin", method=RequestMethod.POST)
+	public String modifierAdmin(ModelMap model, @ModelAttribute("mAdmin") Admin pAdmin) {
+		admService.updateAdminProd(pAdmin);
+		model.addAttribute("pCatListe", catService.getAllCategory());
+		model.addAttribute("pPrListe", prService.getAllProducts());
+		model.addAttribute("pKeyWord", new Produit());
+		List<Admin> listeAdminProds=admService.getAllAdminProd();
+		model.addAttribute("pListeAdmin", listeAdminProds);
+		return "listeAdminProds";
+	}
+	
+	@RequestMapping(value="/supprimerAdmin", method=RequestMethod.GET)
+	public ModelAndView supprimerAdmin(ModelMap model, @RequestParam("idAdmin")long id) {
+		ModelAndView mav=new ModelAndView("listeAdminProds");
+		admService.deleteAdminProd(id);
+		model.addAttribute("pCatListe", catService.getAllCategory());
+		model.addAttribute("pKeyWord", new Produit());
+		List<Admin> listeAdminProds=admService.getAllAdminProd();
+		model.addAttribute("pListeAdmin", listeAdminProds);
+		return mav;
+	}
+	
 
 }

@@ -38,6 +38,9 @@
 					<form:button type="submit" cssStyle="btn btn-default" >Rechercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					</form:button>
 				</form:form>
+				<a href="${pageContext.request.contextPath}/adminCat/listeAdmin">
+				<button class="btn btn-default" type="button" style="margin-left: 80%" >Liste ADMIN_PROD</button>
+				</a>
 			</div>
 		</div>
 	</nav>
