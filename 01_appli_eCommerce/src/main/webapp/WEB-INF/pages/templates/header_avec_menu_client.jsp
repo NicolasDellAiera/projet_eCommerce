@@ -68,13 +68,13 @@
 			</div>
 		</c:forEach>
 	</div>
-	
 	<br/>
 	
 	<!-- SALUTATION CLIENT -->
 	
 	<c:if test="${pClient != null}">
 		<h4 style="width:90%; margin:auto">Bonjour ${pClient.nomClient}. Ravi de vous revoir !</h4>
+		<br/>
 	</c:if>
 
 </body>

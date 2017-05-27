@@ -56,10 +56,18 @@
 				<td><form:input path="quantite"></form:input></td>
 
 			<tr>
-				<td><form:button type="submit" cssStyle="btn btn-default">Ajouter au panier</form:button></td>
+				<td><form:button type="submit">Ajouter au panier</form:button></td>
 			</tr>
 		</table>
 	</form:form>
+	
+	<!-- MESSAGE EN CAS D'ERREUR -->
+	
+	<c:if test="${msgErreur != null}">
+		<div class="alert alert-danger" role="alert" style="width:80%; margin:auto">
+			${msgErreur}
+		</div>
+	</c:if>
 
 	<%@include file="templates/footer.html"%>
 

@@ -20,6 +20,7 @@
 	<%@include file="templates/header_avec_menu_client.jsp"%>
 	
 	<h4 style="width:90%; margin:auto">Mon panier : ${mPanier.montant} <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></h4>
+	<br/>
 	
 	<div style="width: 80%; margin:auto">
 	<c:forEach var="lc" items="${mPanier.listeLignesCommande}">
@@ -41,7 +42,23 @@
   		</li>
 	</ul>
 	</c:forEach>
+	<br/>
+	<a class="btn btn-success" href="${pageContext.request.contextPath}/site/validerPanier" role="button">Valider le panier</a>
 	</div>
+
+	<!-- MESSAGE EN CAS D'ERREUR -->
+	
+	<c:if test="${msgErreur != null}">
+		<br/>
+		<div class="alert alert-danger" role="alert" style="width:80%; margin:auto">
+			${msgErreur}
+		</div>
+		<br/>
+		<div style="width:80%; margin:auto">
+			<a class="btn btn-danger" href="${pageContext.request.contextPath}/site/afficherFormConnexion" role="button">Se Connecter</a>
+			<a class="btn btn-danger" href="${pageContext.request.contextPath}/site/afficherFormEdit" role="button">Créer un compte</a>
+		</div>
+	</c:if>
 	
 	<%@include file="templates/footer.html"%>
 

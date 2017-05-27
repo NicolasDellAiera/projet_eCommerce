@@ -34,6 +34,8 @@
 		</table>
 	</form:form>
 	
+	<!-- MESSAGE EN CAS D'ERREUR -->
+	
 	<c:if test="${msgErreur != null}">
 		<div class="alert alert-danger" role="alert" style="width:80%; margin:auto">
 			${msgErreur}
