@@ -29,18 +29,15 @@
 					aria-expanded="false">
 					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/adminCat">Accueil <span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/adminProd">Accueil <span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
 			</div>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
-				<form:form cssStyle="navbar-form navbar-left" method="POST" modelAttribute="pKeyWord" action="${pageContext.request.contextPath}/adminCat/afficherParKeyWord">
+				<form:form cssStyle="navbar-form navbar-left" method="POST" modelAttribute="pKeyWord" action="${pageContext.request.contextPath}/adminProd/afficherParKeyWord">
 					<form:input path="designation" cssStyle="form-control"></form:input>
 					<form:button type="submit" cssStyle="btn btn-default" >Rechercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					</form:button>
 				</form:form>
-				<a href="${pageContext.request.contextPath}/adminCat/listeAdmin">
-				<button class="btn btn-default" type="button" style="margin-left: 80%" >Liste ADMIN_PROD</button>
-				</a>
 			</div>
 		</div>
 	</nav>
@@ -49,27 +46,12 @@
 
 	<div class="btn-group btn-group-justified" role="group" aria-label="...">
 		<c:forEach var="cat" items="${pCatListe}">
-			<div class="btn-group" role="group" style="width: 80%" >
-				<a href="${pageContext.request.contextPath}/adminCat/afficherParCat/${cat.nomCategorie}">
-				<button type="button" class="btn btn-default">${cat.nomCategorie}</button>
-				</a>
-			</div>
-			<div class="btn-group" role="group" style="width: 20%" >
-				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="glyphicon glyphicon-wrench" ></span></button>
-				<ul class="dropdown-menu">
-				    <li><a href="${pageContext.request.contextPath}/adminCat/formulaireModifierCategorie?idCategorie=${cat.idCategorie}">
-				    Modifier categorie ${cat.nomCategorie}</a></li>
-				    <li><a href="${pageContext.request.contextPath}/adminCat/supprimerCategorie?idCategorie=${cat.idCategorie}">
-				    Supprimer categorie ${cat.nomCategorie}</a></li>
-			  	</ul>
+			<div class="btn-group" role="group">
+				<a href="${pageContext.request.contextPath}/adminProd/afficherParCat/${cat.nomCategorie}"><button type="button" class="btn btn-default">${cat.nomCategorie}</button></a>
 			</div>
 		</c:forEach>
-		<div class="btn-group" role="group" style="width: 10%" >
-			<a href="${pageContext.request.contextPath}/adminCat/formulaireAjoutCat/${cat.nomCategorie}">
-			<button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-plus" ></span></button>
-			</a>
-		</div>
 	</div>
+	<br/>
 
 </body>
 

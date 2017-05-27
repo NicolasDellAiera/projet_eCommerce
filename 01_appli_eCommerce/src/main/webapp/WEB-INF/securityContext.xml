@@ -8,7 +8,8 @@
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 	<security:http auto-config="true">
-		<security:intercept-url pattern="/adminCat/**" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/adminCat/**" access="ROLE_ADMINCAT" />
+		<security:intercept-url pattern="/adminProd/**" access="ROLE_ADMINPROD" />
 		<security:form-login login-page="/login" authentication-failure-url="/loginEchec" />
 		<security:logout logout-success-url="/logout" />
 		<security:access-denied-handler error-page="/denied" />
