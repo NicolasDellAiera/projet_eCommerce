@@ -26,8 +26,6 @@ import fr.adaming.service.IProduitService;
 @RequestMapping("/adminCat")
 
 public class AdminCatController {
-	//Attributes
-	private Admin admin;
 	
 	//Associations
 	@Autowired
@@ -48,12 +46,6 @@ public class AdminCatController {
 	public void setPrService(IProduitService prService) {
 		this.prService = prService;
 	}
-	public Admin getAdmin() {
-		return admin;
-	}
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
 	
 	//Methods
 	@RequestMapping(method=RequestMethod.GET)
@@ -62,7 +54,6 @@ public class AdminCatController {
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProducts());
 		model.addAttribute("pKeyWord", new Produit());
-		model.addAttribute("pAdmin", this.admin);
 		return "accueilAdminCat";
 	}
 	
@@ -112,7 +103,6 @@ public class AdminCatController {
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProducts());
 		model.addAttribute("pKeyWord", new Produit());
-		model.addAttribute("pAdmin", this.admin);
 		return "accueilAdminCat";
 	}
 	
@@ -142,7 +132,6 @@ public class AdminCatController {
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProducts());
 		model.addAttribute("pKeyWord", new Produit());
-		model.addAttribute("pAdmin", this.admin);
 		return "accueilAdminCat";
 	}
 	
@@ -160,7 +149,6 @@ public class AdminCatController {
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProducts());
 		model.addAttribute("pKeyWord", new Produit());
-		model.addAttribute("pAdmin", this.admin);
 		return "accueilAdminCat";
 	}
 	
@@ -180,7 +168,6 @@ public class AdminCatController {
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProducts());
 		model.addAttribute("pKeyWord", new Produit());
-		model.addAttribute("pAdmin", this.admin);
 		return "accueilAdminCat";
 	}
 	

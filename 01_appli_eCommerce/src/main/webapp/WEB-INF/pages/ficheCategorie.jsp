@@ -40,7 +40,7 @@
 		</table>
 	</form:form>
 	
-	<%@include file="templates/footer.html"%>
+	<%@include file="templates/footerAdmin.jsp"%>
 
 </body>
 
