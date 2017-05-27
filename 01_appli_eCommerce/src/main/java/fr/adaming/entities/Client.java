@@ -12,6 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name="clients")
 
@@ -25,15 +29,19 @@ public class Client implements Serializable {
 	private long idClient;
 	
 	@Column(name="nomClient")
+	@NotEmpty(message="Veuillez renseigner votre nom svp")
 	private String nomClient;
 	
 	@Column(name="adresse")
+	@NotEmpty(message="Veuillez renseigner votre adresse svp")
 	private String adresse;
 	
 	@Column(name="email")
+	@Email(message="Adresse email non valide")
 	private String email;
 	
 	@Column(name="mdp")
+	@Length(min=5, message="Mot de passe invalide, il doit être composé d'au moins 5 caractères")
 	private String mdp;
 	
 	@Column(name="tel")

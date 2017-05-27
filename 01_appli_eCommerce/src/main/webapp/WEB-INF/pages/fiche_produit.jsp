@@ -54,6 +54,7 @@
 			<tr>
 				<td><form:label path="quantite">Quantité :</form:label></td>
 				<td><form:input path="quantite"></form:input>
+			</tr>
 			<tr>
 				<td><form:button type="submit">Ajouter au panier</form:button></td>
 			</tr>

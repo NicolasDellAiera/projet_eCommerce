@@ -72,7 +72,7 @@
 	
 	<!-- SALUTATION CLIENT -->
 	
-	<c:if test="${pClient != null}">
+	<c:if test="${pClient.nomClient != null}">
 		<h4 style="width:90%; margin:auto">Bonjour ${pClient.nomClient}. Ravi de vous revoir !</h4>
 		<br/>
 	</c:if>

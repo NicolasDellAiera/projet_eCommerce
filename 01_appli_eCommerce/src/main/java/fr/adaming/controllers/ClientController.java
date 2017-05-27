@@ -3,12 +3,14 @@ package fr.adaming.controllers;
 import java.util.Calendar;
 
 import javax.annotation.PostConstruct;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -122,6 +124,7 @@ public class ClientController
 	public void initialiser()
 	{
 		panier = new Panier();
+		client = new Client();
 	}
 	
 	//Methods
@@ -194,53 +197,51 @@ public class ClientController
 	@RequestMapping(value="/afficherFormEdit", method=RequestMethod.GET)
 	public ModelAndView afficherFormulaireEditionCLient()
 	{
-		Client clientForm = new Client();
-		System.out.println("---------Client du controleur : "+this.client);
-		if(this.client != null)
-		{
-			clientForm = this.client;
-		}
-		ModelAndView mav = new ModelAndView("formulaire_edit_client", "mCLientEdit", clientForm);
+		ModelAndView mav = new ModelAndView("formulaire_edit_client", "mCLientEdit", this.client);
 		mav.addObject("pKeyWord", new Produit());
 		mav.addObject("pPrixPanier", this.panier.getMontant());
 		return mav;
 	}
 	
 	@RequestMapping(value="/soumettreFormEdition", method=RequestMethod.POST)
-	public String soumettreFormulaireEditionClient(@ModelAttribute("mCLientEdit")Client clientForm, ModelMap model)
+	public String soumettreFormulaireEditionClient(ModelMap model, @Valid @ModelAttribute("mCLientEdit")Client clientForm, BindingResult result)
 	{
-		System.out.println("---------Retour du formulaire d'édition : " + clientForm);
-		Client clientBdd = cltService.isExist(clientForm);
-		if(clientBdd != null && clientForm.getIdClient() == 0)
+		if(result.hasErrors())
 		{
-			Client clientFormRenvoi = new Client();
-			if(this.client != null)
-			{
-				clientFormRenvoi = this.client;
-			}
-			String message = "Les données rentrées correspondent déjà à un client.";
-			model.addAttribute("mCLientEdit", clientFormRenvoi);
+			System.out.println("----------COUCOU !");
 			model.addAttribute("pKeyWord", new Produit());
 			model.addAttribute("pPrixPanier", this.panier.getMontant());
-			model.addAttribute("msgErreur", message);
 			return "formulaire_edit_client";
 		}
 		else
 		{
-			this.client = cltService.editClient(clientForm);
-			model.addAttribute("pCatListe", catService.getAllCategory());
-			model.addAttribute("pPrListe", prService.getAllProducts());
-			model.addAttribute("pKeyWord", new Produit());
-			model.addAttribute("pPrixPanier", this.panier.getMontant());
-			model.addAttribute("pClient", this.client);
-			return "accueil";
+			Client clientBdd = cltService.isExist(clientForm);
+			if(clientBdd != null && clientForm.getIdClient() == 0)
+			{
+				String message = "Les données rentrées correspondent déjà à un client.";
+				model.addAttribute("mCLientEdit", this.client);
+				model.addAttribute("pKeyWord", new Produit());
+				model.addAttribute("pPrixPanier", this.panier.getMontant());
+				model.addAttribute("msgErreur", message);
+				return "formulaire_edit_client";
+			}
+			else
+			{
+				this.client = cltService.editClient(clientForm);
+				model.addAttribute("pCatListe", catService.getAllCategory());
+				model.addAttribute("pPrListe", prService.getAllProducts());
+				model.addAttribute("pKeyWord", new Produit());
+				model.addAttribute("pPrixPanier", this.panier.getMontant());
+				model.addAttribute("pClient", this.client);
+				return "accueil";
+			}	
 		}	
 	}
 	
 	@RequestMapping(value="/seDeconnecter", method=RequestMethod.GET)
 	public String deconnecterClient(ModelMap model)
 	{
-		this.client = null;
+		this.client = new Client();
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProducts());
 		model.addAttribute("pKeyWord", new Produit());
@@ -266,10 +267,7 @@ public class ClientController
 	{
 		if(lc.getQuantite() <= prService.getProduct(id).getQuantite())
 		{
-			//Modification de la bdd --> faite à la validation de la commande
 			Produit prod = prService.getProduct(id);
-//			prod.setQuantite(prod.getQuantite() - lc.getQuantite());
-//			prod = prService.updateProduct(prod);
 			
 			//Création complète de la ligne de commande
 			lc.setProduit(prod);
@@ -314,12 +312,7 @@ public class ClientController
 	
 	@RequestMapping(value="/retirerDuPanier/{indexLigneCommande}")
 	public String retirerLigneCommandePanier(ModelMap model, @PathVariable("indexLigneCommande")int indexLc)
-	{
-		//Modification de la bdd --> faite à la validation de la commande
-//		Produit prod = this.panier.getListeLignesCommande().get(indexLc).getProduit();
-//		prod.setQuantite(prod.getQuantite() + this.panier.getListeLignesCommande().get(indexLc).getQuantite());
-//		prod = prService.updateProduct(prod);
-		
+	{		
 		//Mise à jour du panier
 		double montant = this.panier.getMontant()-this.panier.getListeLignesCommande().get(indexLc).getPrix();
 		this.panier.setMontant((double)Math.round(montant*100)/100);
@@ -337,7 +330,7 @@ public class ClientController
 	public String validerLePanier(ModelMap model)
 	{
 		//Vérification de la connexion
-		if(this.client != null)
+		if(this.client.getNomClient() != null)
 		{
 			//Envoi des infos à la page
 			Client carte = new Client();
@@ -363,8 +356,6 @@ public class ClientController
 	@RequestMapping(value="/validerCommande", method=RequestMethod.POST)
 	public String validerLaCommande(@ModelAttribute("mCarteBancaire")Client carte, ModelMap model)
 	{
-		System.out.println("----------Numéro de carte : " + carte.getNomClient());
-		
 		//Modification de la base de données
 		Commande com = new Commande();
 		for(LigneCommande lc : this.panier.getListeLignesCommande())

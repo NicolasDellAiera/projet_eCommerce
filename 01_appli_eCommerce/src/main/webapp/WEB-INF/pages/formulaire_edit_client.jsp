@@ -28,10 +28,12 @@
 			<tr>
 				<td><form:label path="nomClient">Nouveau nom :</form:label></td>
 				<td><form:input path="nomClient"></form:input></td>
+				<td><form:errors path="nomClient" cssStyle="color:red"></form:errors></td>
 			<tr>
 			<tr>
 				<td><form:label path="adresse">Nouvelle adresse de livraison :</form:label></td>
 				<td><form:input path="adresse"></form:input></td>
+				<td><form:errors path="adresse" cssStyle="color:red"></form:errors></td>
 			<tr>
 			<tr>
 				<td><form:label path="tel">Nouveau numéro de telephone :</form:label></td>
@@ -40,10 +42,12 @@
 			<tr>
 				<td><form:label path="email">Nouvelle adresse email :</form:label></td>
 				<td><form:input path="email"></form:input></td>
+				<td><form:errors path="email" cssStyle="color:red"></form:errors></td>
 			<tr>
 			<tr>
 				<td><form:label path="mdp">Nouveau mot de passe :</form:label></td>
 				<td><form:password path="mdp"></form:password></td>
+				<td><form:errors path="mdp" cssStyle="color:red"></form:errors></td>
 			<tr>
 				<td><form:button type="submit" cssStyle="btn btn-default">Editer</form:button></td>
 			</tr>
