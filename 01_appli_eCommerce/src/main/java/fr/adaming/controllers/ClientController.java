@@ -1,12 +1,12 @@
 package fr.adaming.controllers;
 
 import java.util.Calendar;
-import java.util.List;
-import java.util.Properties;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -71,6 +71,8 @@ public class ClientController
 	private IClientService cltService;
 	@Autowired
 	private ICommandeService commandeService;
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	//Getters and setters
 	public ICategorieService getCatService() {
@@ -108,8 +110,13 @@ public class ClientController
 	}
 	public void setCommandeService(ICommandeService commandeService) {
 		this.commandeService = commandeService;
+	}		
+	public JavaMailSender getMailSender() {
+		return mailSender;
 	}
-	
+	public void setMailSender(JavaMailSender mailSender) {
+		this.mailSender = mailSender;
+	}
 	//Initialisation
 	@PostConstruct
 	public void initialiser()
@@ -376,6 +383,15 @@ public class ClientController
 		commandeService.createCommand(com);
 		
 		//Envoi d'un mail de confirmation
+		String sujet = "Confirmation de votre commande";
+		String texte = "Nous accusons bonne réception de votre commande pour un montant de " + this.panier.getMontant() +
+				"euros. Elle sera traitée dans les meilleurs délais. \nMartin Thomas et Dell'aiera Nicolas";
+		SimpleMailMessage email = new SimpleMailMessage();
+		email.setFrom("dellaiera.nicolas@gmail.com");
+		email.setTo(this.client.getEmail());
+		email.setSubject(sujet);
+		email.setText(texte);
+		mailSender.send(email);
 		
 		//Réinitialisation du panier
 		this.panier.getListeLignesCommande().clear();

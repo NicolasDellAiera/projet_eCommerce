@@ -18,7 +18,7 @@
 <body>
 
 	<%@include file="templates/header_avec_menu_client.jsp"%>
-	
+
 	<!-- FICHE PRODUIT -->
 	
 	<div style="width: 80%; margin:auto">
@@ -53,8 +53,7 @@
 		<table width="80%" align="center">
 			<tr>
 				<td><form:label path="quantite">Quantité :</form:label></td>
-				<td><form:input path="quantite"></form:input></td>
-
+				<td><form:input path="quantite"></form:input>
 			<tr>
 				<td><form:button type="submit">Ajouter au panier</form:button></td>
 			</tr>

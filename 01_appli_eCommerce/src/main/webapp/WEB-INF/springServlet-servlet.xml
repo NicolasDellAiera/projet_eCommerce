@@ -17,5 +17,5 @@
 		<property name="suffix" value=".jsp"></property>
 		<property name="prefix" value="/WEB-INF/pages/"></property>
 	</bean>
-
+	
 </beans>

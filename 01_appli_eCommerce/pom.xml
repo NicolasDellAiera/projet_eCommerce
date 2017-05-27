@@ -6,14 +6,14 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>spring_mvc_iov_hibernate</name>
-	
+
 	<properties>
 		<spring.version>4.1.9.RELEASE</spring.version>
 		<hibernate.version>4.2.21.Final</hibernate.version>
 	</properties>
-	
+
 	<dependencies>
-	
+
 		<!-- HIBERNATE -->
 
 		<dependency>
@@ -51,15 +51,15 @@
 			<artifactId>validation-api</artifactId>
 			<version>1.1.0.Final</version>
 		</dependency>
-		
+
 		<!-- CONNECTOR MYSQL -->
-		
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.38</version>
 		</dependency>
-		
+
 		<!-- SPRING -->
 
 		<dependency>
@@ -103,7 +103,30 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-expression -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- JAVAMAIL -->
+
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
 		<!-- SERVLET -->
 
 		<dependency>
@@ -123,7 +146,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
+
 		<!-- SPRING SECURITY -->
 
 		<dependency>
@@ -149,9 +172,9 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>3.2.0.RELEASE</version>
 		</dependency>
-	
+
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -165,5 +188,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>

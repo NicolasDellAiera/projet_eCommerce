@@ -28,8 +28,10 @@
     	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     	<init-param>
   			<param-name>contextConfigLocation</param-name>
-  			<param-value>/WEB-INF/springServlet-servlet.xml
-  						 /WEB-INF/securityContext.xml</param-value>
+  			<param-value>
+  				/WEB-INF/securityContext.xml
+  				/WEB-INF/springServlet-servlet.xml
+  			</param-value>
   	</init-param>
 	</servlet>
 	
