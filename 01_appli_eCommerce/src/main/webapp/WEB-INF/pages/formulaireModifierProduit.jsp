@@ -19,11 +19,11 @@
 
 	<%@include file="templates/headerAdminCat.jsp"%>
 	
-	<form:form action="${pageContext.request.contextPath}/adminCat/modifierProduit" method="post" modelAttribute="mProduit2">
+	<form:form action="${pageContext.request.contextPath}/adminCat/modifierProduit" method="post" modelAttribute="mProduit2" enctype="multipart/form-data" >
 		<table width="80%" align="center">
 			<tr>
-				<td><form:label path="idProduit">ID du produit :</form:label></td>
-				<td><form:input path="idProduit" value="${pProduit.idProduit}" ></form:input></td>
+				<td><form:label path="idProduit" type="hidden" ></form:label></td>
+				<td><form:input path="idProduit" type="hidden" value="${pProduit.idProduit}" ></form:input></td>
 			<tr>
 			<tr>
 				<td><form:label path="designation">Nom du produit :</form:label></td>
@@ -46,6 +46,10 @@
 				<td><form:input type="number" path="selection" value="${pProduit.selection}" ></form:input></td>
 			<tr>
 			<tr>
+				<td>Photo :</td>
+				<td><input type="file" name="file"></input></td>
+			</tr>
+			<tr>
 				<td><form:label path="categorie.idCategorie" for="categorie" >Catégorie :</form:label></td>
 				<td><form:select id="categorie" path="categorie.idCategorie" >
 					<c:forEach var="cat" items="${pCatListe}">
@@ -56,7 +60,7 @@
 			<tr>
 			<br/>
 			<tr>
-				<td><form:button type="submit" cssStyle="btn btn-default">Editer</form:button></td>
+				<td><input type="submit" value="editer"/></td>
 			</tr>
 		</table>
 	</form:form>

@@ -1,10 +1,15 @@
 package fr.adaming.controllers;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.annotation.MultipartConfig;
 import javax.validation.Valid;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -13,6 +18,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.adaming.entities.Admin;
@@ -64,6 +71,13 @@ public class AdminCatController {
 		model.addAttribute("pPrListe", prService.getAllProducts());
 		model.addAttribute("pKeyWord", new Produit());
 		return "accueilAdminCat";
+	}
+	
+	@RequestMapping(value="/photoProd", produces=MediaType.ALL_VALUE)
+	@ResponseBody
+	public byte[] getPhoto(int id) throws IOException {
+		Produit prod = prService.getProduct(id);
+		return IOUtils.toByteArray(new ByteArrayInputStream(prod.getPhoto()));
 	}
 	
 	@RequestMapping(value="/afficherParCat/{nomCat}", method=RequestMethod.GET)
@@ -153,7 +167,8 @@ public class AdminCatController {
 	}
 	
 	@RequestMapping(value="/ajoutProduit", method=RequestMethod.POST)
-	public String ajoutProduit(ModelMap model, @ModelAttribute("mProduit") Produit pProduit) {
+	public String ajoutProduit(ModelMap model, @ModelAttribute("mProduit") Produit pProduit, MultipartFile file) throws Exception {
+		pProduit.setPhoto(file.getBytes());
 		prService.createProduct(pProduit);
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProducts());
@@ -172,7 +187,8 @@ public class AdminCatController {
 	}
 	
 	@RequestMapping(value="/modifierProduit", method=RequestMethod.POST)
-	public String modifierProduit(ModelMap model, @ModelAttribute("mProduit2") Produit pProduit) {
+	public String modifierProduit(ModelMap model, @ModelAttribute("mProduit2") Produit pProduit, MultipartFile file) throws Exception {
+		pProduit.setPhoto(file.getBytes());
 		prService.updateProduct(pProduit);
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProducts());

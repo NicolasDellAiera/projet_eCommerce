@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.entities.Categorie;
 import fr.adaming.entities.Produit;
@@ -95,6 +96,7 @@ public class ProduitDaoImpl implements IProduitDao {
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public Produit createProduct(Produit p) {
 		Session s = sf.openSession();
 		s.save(p);

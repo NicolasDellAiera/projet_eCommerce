@@ -22,8 +22,8 @@
 	<form:form action="${pageContext.request.contextPath}/adminCat/modifierCat" method="post" modelAttribute="mCategorie2">
 		<table width="80%" align="center">
 			<tr>
-				<td><form:label path="idCategorie">ID de la categorie :</form:label></td>
-				<td><form:input path="idCategorie" value="${pCategorie.idCategorie}" ></form:input></td>
+				<td><form:label path="idCategorie" type="hidden" >:</form:label></td>
+				<td><form:input path="idCategorie" type="hidden" value="${pCategorie.idCategorie}" ></form:input></td>
 			<tr>
 			<tr>
 				<td><form:label path="nomCategorie">Nom de la categorie :</form:label></td>

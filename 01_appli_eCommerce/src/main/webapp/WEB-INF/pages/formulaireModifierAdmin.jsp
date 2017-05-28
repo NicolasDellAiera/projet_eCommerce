@@ -22,8 +22,8 @@
 	<form:form action="${pageContext.request.contextPath}/adminCat/modifierAdmin" method="post" modelAttribute="mAdmin2">
 		<table width="80%" align="center">
 			<tr>
-				<td><form:label path="idAdmin">Username :</form:label></td>
-				<td><form:input path="idAdmin" value="${pAdmin.idAdmin}" ></form:input></td>
+				<td><form:label path="idAdmin" type="hidden" ></form:label></td>
+				<td><form:input path="idAdmin" type="hidden" value="${pAdmin.idAdmin}" ></form:input></td>
 			<tr>
 			<tr>
 				<td><form:label path="username">Username :</form:label></td>

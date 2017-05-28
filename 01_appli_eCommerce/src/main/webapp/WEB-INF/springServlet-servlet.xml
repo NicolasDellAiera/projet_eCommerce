@@ -18,4 +18,10 @@
 		<property name="prefix" value="/WEB-INF/pages/"></property>
 	</bean>
 	
+	<!-- Configuration Upload -->
+	<bean name="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000"></property>
+	</bean>
+	
 </beans>

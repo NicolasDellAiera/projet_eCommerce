@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -42,7 +43,8 @@ public class Produit implements Serializable {
 	private boolean selection;
 	
 	@Column(name="photo")
-	private String photo;
+	@Lob
+	private byte[] photo;
 	
 	//-----Associations-----//
 	
@@ -59,7 +61,7 @@ public class Produit implements Serializable {
 		super();
 	}
 
-	public Produit(String designation, String description, double prix, int quantite, boolean selection, String photo) {
+	public Produit(String designation, String description, double prix, int quantite, boolean selection, byte[] photo) {
 		super();
 		this.designation = designation;
 		this.description = description;
@@ -70,7 +72,7 @@ public class Produit implements Serializable {
 	}
 
 	public Produit(int idProduit, String designation, String description, double prix, int quantite, boolean selection,
-			String photo) {
+			byte[] photo) {
 		super();
 		this.idProduit = idProduit;
 		this.designation = designation;
@@ -131,13 +133,13 @@ public class Produit implements Serializable {
 		this.selection = selection;
 	}
 
-	public String getPhoto() {
+	public byte[] getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(String photo) {
+	public void setPhoto(byte[] photo) {
 		this.photo = photo;
-	} 
+	}
 
 	public Categorie getCategorie() {
 		return categorie;

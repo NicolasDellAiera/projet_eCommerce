@@ -1,11 +1,15 @@
 package fr.adaming.controllers;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.Calendar;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.adaming.entities.Categorie;
@@ -137,6 +142,13 @@ public class ClientController
 		model.addAttribute("pClient", this.client);
 		model.addAttribute("pPrixPanier", this.panier.getMontant());
 		return "accueil";
+	}
+	
+	@RequestMapping(value="/photoProd", produces=MediaType.ALL_VALUE)
+	@ResponseBody
+	public byte[] getPhoto(int id) throws IOException {
+		Produit prod = prService.getProduct(id);
+		return IOUtils.toByteArray(new ByteArrayInputStream(prod.getPhoto()));
 	}
 	
 	@RequestMapping(value="/afficherParCat/{nomCat}", method=RequestMethod.GET)

@@ -22,7 +22,7 @@
 	<!-- FICHE PRODUIT -->
 	
 	<div style="width: 80%; margin:auto">
-		<img class="media-object" src="/01_appli_eCommerce/ressources/images/legume.jpg" alt="legumes">
+		<img src="${pageContext.request.contextPath}/adminCat/photoProd?id=${pProduit.idProduit}">
 		<table class="table table-hover">
 			<tr>
 				<th>Designation</th>
