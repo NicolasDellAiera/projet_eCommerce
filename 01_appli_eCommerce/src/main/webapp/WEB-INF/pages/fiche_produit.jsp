@@ -25,7 +25,7 @@
 		<img class="media-object" src="/01_appli_eCommerce/ressources/images/legume.jpg" alt="legumes">
 		<table class="table table-hover">
 			<tr>
-				<th>Designation</th>
+				<th>Désignation</th>
 				<td>${pProduit.designation}</td>
 			</tr>
 			<tr>
@@ -33,7 +33,7 @@
 				<td>${pProduit.description}</td>
 			</tr>
 			<tr>
-				<th>Categorie</th>
+				<th>Catégorie</th>
 				<td>${pProduit.categorie.nomCategorie}</td>
 			</tr>
 			<tr>
@@ -53,7 +53,8 @@
 		<table width="80%" align="center">
 			<tr>
 				<td><form:label path="quantite">Quantité :</form:label></td>
-				<td><form:input path="quantite"></form:input>
+				<td><form:input path="quantite"></form:input></td>
+				<td><form:errors path="quantite" cssStyle="color:red"></form:errors></td>
 			</tr>
 			<tr>
 				<td><form:button type="submit">Ajouter au panier</form:button></td>

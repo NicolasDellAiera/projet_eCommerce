@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Range;
+
 @Entity
 @Table(name="ligneCommandes")
 
@@ -25,6 +27,7 @@ public class LigneCommande implements Serializable {
 	private int idLigneCommande;
 	
 	@Column(name="quantite")
+	@Range(min=1, message="Il n''est pas possible de commander moins de 1 produit")
 	private int quantite;
 	
 	@Column(name="prix")

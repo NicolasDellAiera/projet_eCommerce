@@ -37,16 +37,21 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="${pageContext.request.contextPath}/site/afficherFormConnexion">Connexion <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
-					<li><a href="${pageContext.request.contextPath}/site/seDeconnecter">Déconnexion <span class="glyphicon glyphicon-off" aria-hidden="true"></span></a></li>
-					<li><a href="${pageContext.request.contextPath}/site/afficherFormEdit">Modifier le profil <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a></li>
-<%-- 					<li><a href="${pageContext.request.contextPath}/site/afficherFormCreation">Créer un profil</a></li> --%>
+					<c:if test="${pClient.nomClient == null}">
+						<li><a href="${pageContext.request.contextPath}/site/afficherFormConnexion">Connexion <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
+					</c:if>
+					<c:if test="${pClient.nomClient != null}">
+						<li><a href="${pageContext.request.contextPath}/site/seDeconnecter">Déconnexion <span class="glyphicon glyphicon-off" aria-hidden="true"></span></a></li>
+					</c:if>
+					<li><a href="${pageContext.request.contextPath}/site/afficherFormEdit">Editer son profil <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a></li>
 				</ul>
+				
 				<form:form cssStyle="navbar-form navbar-left" method="POST" modelAttribute="pKeyWord" action="${pageContext.request.contextPath}/site/afficherParKeyWord">
 					<form:input path="designation" cssStyle="form-control"></form:input>
 					<form:button type="submit" cssStyle="btn btn-default" >Rechercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					</form:button>
 				</form:form>
+				
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.request.contextPath}/site/afficherPanier">Voir le panier <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
 					<c:if test="${pPrixPanier != 0}">	
@@ -68,14 +73,6 @@
 			</div>
 		</c:forEach>
 	</div>
-	<br/>
-	
-	<!-- SALUTATION CLIENT -->
-	
-	<c:if test="${pClient.nomClient != null}">
-		<h4 style="width:90%; margin:auto">Bonjour ${pClient.nomClient}. Ravi de vous revoir !</h4>
-		<br/>
-	</c:if>
 
 </body>
 

@@ -36,7 +36,7 @@
 				<td><form:errors path="adresse" cssStyle="color:red"></form:errors></td>
 			<tr>
 			<tr>
-				<td><form:label path="tel">Nouveau numéro de telephone :</form:label></td>
+				<td><form:label path="tel">Nouveau numéro de téléphone :</form:label></td>
 				<td><form:input path="tel"></form:input></td>
 			<tr>
 			<tr>

@@ -37,11 +37,12 @@ public class Client implements Serializable {
 	private String adresse;
 	
 	@Column(name="email")
+	@NotEmpty(message="Veuillez renseigner votre adresse mail svp")
 	@Email(message="Adresse email non valide")
 	private String email;
 	
 	@Column(name="mdp")
-	@Length(min=5, message="Mot de passe invalide, il doit être composé d'au moins 5 caractères")
+	@Length(min=5, message="Mot de passe invalide, il doit être composé d''au moins 5 caractères")
 	private String mdp;
 	
 	@Column(name="tel")

@@ -146,6 +146,7 @@ public class ClientController
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProductsByCategory(cat));
 		model.addAttribute("pKeyWord", new Produit());
+		model.addAttribute("pClient", this.client);
 		model.addAttribute("pPrixPanier", this.panier.getMontant());
 		return "accueil";
 	}
@@ -157,6 +158,7 @@ public class ClientController
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProductsByKeyWord(motCle));
 		model.addAttribute("pKeyWord", new Produit());
+		model.addAttribute("pClient", this.client);
 		model.addAttribute("pPrixPanier", this.panier.getMontant());
 		return "accueil";
 	}
@@ -166,6 +168,7 @@ public class ClientController
 	{
 		ModelAndView mav = new ModelAndView("formulaire_connexion_client", "mClient", new Client());
 		mav.addObject("pKeyWord", new Produit());
+		mav.addObject("pClient", this.client);
 		mav.addObject("pPrixPanier", this.panier.getMontant());
 		return mav;
 	}
@@ -188,6 +191,7 @@ public class ClientController
 		{
 			String message="Identifiant ou mot de passe incorrect. Veuillez réessayer ou vous créer un compte si vous n'en avez pas un.";
 			model.addAttribute("pKeyWord", new Produit());
+			model.addAttribute("pClient", this.client);
 			model.addAttribute("pPrixPanier", this.panier.getMontant());
 			model.addAttribute("msgErreur", message);
 			return "formulaire_connexion_client";
@@ -199,6 +203,7 @@ public class ClientController
 	{
 		ModelAndView mav = new ModelAndView("formulaire_edit_client", "mCLientEdit", this.client);
 		mav.addObject("pKeyWord", new Produit());
+		mav.addObject("pClient", this.client);
 		mav.addObject("pPrixPanier", this.panier.getMontant());
 		return mav;
 	}
@@ -208,8 +213,8 @@ public class ClientController
 	{
 		if(result.hasErrors())
 		{
-			System.out.println("----------COUCOU !");
 			model.addAttribute("pKeyWord", new Produit());
+			model.addAttribute("pClient", this.client);
 			model.addAttribute("pPrixPanier", this.panier.getMontant());
 			return "formulaire_edit_client";
 		}
@@ -221,6 +226,7 @@ public class ClientController
 				String message = "Les données rentrées correspondent déjà à un client.";
 				model.addAttribute("mCLientEdit", this.client);
 				model.addAttribute("pKeyWord", new Produit());
+				model.addAttribute("pClient", this.client);
 				model.addAttribute("pPrixPanier", this.panier.getMontant());
 				model.addAttribute("msgErreur", message);
 				return "formulaire_edit_client";
@@ -244,6 +250,7 @@ public class ClientController
 		this.client = new Client();
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pPrListe", prService.getAllProducts());
+		model.addAttribute("pClient", this.client);
 		model.addAttribute("pKeyWord", new Produit());
 		model.addAttribute("pPrixPanier", this.panier.getMontant());
 		return "accueil";
@@ -256,6 +263,7 @@ public class ClientController
 		model.addAttribute("pProduit", p);
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pKeyWord", new Produit());
+		model.addAttribute("pClient", this.client);
 		model.addAttribute("pPrixPanier", this.panier.getMontant());
 	
 		model.addAttribute("mLigneCommande", new LigneCommande());
@@ -263,41 +271,57 @@ public class ClientController
 	}
 	
 	@RequestMapping(value="/ajouterAuPanier/{idProduit}", method=RequestMethod.POST)
-	public String ajouterLigneCommandePanier(@ModelAttribute("mLigneCommande")LigneCommande lc, @PathVariable("idProduit")int id, ModelMap model)
+	public String ajouterLigneCommandePanier(ModelMap model, @PathVariable("idProduit")int id, @Valid @ModelAttribute("mLigneCommande")LigneCommande lc, BindingResult result)
 	{
-		if(lc.getQuantite() <= prService.getProduct(id).getQuantite())
+		if(result.hasErrors())
 		{
-			Produit prod = prService.getProduct(id);
-			
-			//Création complète de la ligne de commande
-			lc.setProduit(prod);
-			double lcPrix = lc.getProduit().getPrix()*lc.getQuantite();
-			lc.setPrix((double)Math.round(lcPrix*100)/100);
-			
-			//Ajout de la ligne de commande au panier
-			this.panier.getListeLignesCommande().add(lc);
-			this.panier.setMontant(this.panier.getMontant()+lc.getPrix());
-			
-			//Envoi des infos à la page
-			model.addAttribute("mPanier", this.panier);
-			model.addAttribute("pCatListe", catService.getAllCategory());
-			model.addAttribute("pKeyWord", new Produit());
-			model.addAttribute("pPrixPanier", this.panier.getMontant());
-			return "panier";
-		}
-		else
-		{
-			String message = "Désolé, le stock est insuffisant pour ce produit. Il ne reste plus que " + prService.getProduct(id).getQuantite() + " " + prService.getProduct(id).getDesignation() + ".";
 			Produit p = prService.getProduct(id);
 			model.addAttribute("pProduit", p);
 			model.addAttribute("pCatListe", catService.getAllCategory());
 			model.addAttribute("pKeyWord", new Produit());
+			model.addAttribute("pClient", this.client);
 			model.addAttribute("pPrixPanier", this.panier.getMontant());
 		
-			model.addAttribute("msgErreur", message);
-			model.addAttribute("mLigneCommande", new LigneCommande());
 			return "fiche_produit";
 		}
+		else
+		{
+			if(lc.getQuantite() <= prService.getProduct(id).getQuantite())
+			{
+				Produit prod = prService.getProduct(id);
+				
+				//Création complète de la ligne de commande
+				lc.setProduit(prod);
+				double lcPrix = lc.getProduit().getPrix()*lc.getQuantite();
+				lc.setPrix((double)Math.round(lcPrix*100)/100);
+				
+				//Ajout de la ligne de commande au panier
+				this.panier.getListeLignesCommande().add(lc);
+				this.panier.setMontant(this.panier.getMontant()+lc.getPrix());
+				
+				//Envoi des infos à la page
+				model.addAttribute("mPanier", this.panier);
+				model.addAttribute("pCatListe", catService.getAllCategory());
+				model.addAttribute("pKeyWord", new Produit());
+				model.addAttribute("pClient", this.client);
+				model.addAttribute("pPrixPanier", this.panier.getMontant());
+				return "panier";
+			}
+			else
+			{
+				String message = "Désolé, le stock est insuffisant pour ce produit. Il ne reste plus que " + prService.getProduct(id).getQuantite() + " " + prService.getProduct(id).getDesignation() + ".";
+				Produit p = prService.getProduct(id);
+				model.addAttribute("pProduit", p);
+				model.addAttribute("pCatListe", catService.getAllCategory());
+				model.addAttribute("pKeyWord", new Produit());
+				model.addAttribute("pClient", this.client);
+				model.addAttribute("pPrixPanier", this.panier.getMontant());
+			
+				model.addAttribute("msgErreur", message);
+				model.addAttribute("mLigneCommande", new LigneCommande());
+				return "fiche_produit";
+			}
+		}	
 	}
 
 	@RequestMapping(value="/afficherPanier", method=RequestMethod.GET)
@@ -306,6 +330,7 @@ public class ClientController
 		model.addAttribute("mPanier", this.panier);
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pKeyWord", new Produit());
+		model.addAttribute("pClient", this.client);
 		model.addAttribute("pPrixPanier", this.panier.getMontant());
 		return "panier";
 	}
@@ -322,6 +347,7 @@ public class ClientController
 		model.addAttribute("mPanier", this.panier);
 		model.addAttribute("pCatListe", catService.getAllCategory());
 		model.addAttribute("pKeyWord", new Produit());
+		model.addAttribute("pClient", this.client);
 		model.addAttribute("pPrixPanier", this.panier.getMontant());
 		return "panier";
 	}
@@ -347,6 +373,7 @@ public class ClientController
 			model.addAttribute("mPanier", this.panier);
 			model.addAttribute("pCatListe", catService.getAllCategory());
 			model.addAttribute("pKeyWord", new Produit());
+			model.addAttribute("pClient", this.client);
 			model.addAttribute("pPrixPanier", this.panier.getMontant());
 			model.addAttribute("msgErreur", message);
 			return "panier";

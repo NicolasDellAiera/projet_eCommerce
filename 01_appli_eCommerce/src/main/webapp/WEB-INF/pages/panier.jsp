@@ -19,6 +19,8 @@
 
 	<%@include file="templates/header_avec_menu_client.jsp"%>
 	
+	<br/>
+	
 	<h4 style="width:90%; margin:auto">Mon panier : ${mPanier.montant} <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></h4>
 	<br/>
 	
