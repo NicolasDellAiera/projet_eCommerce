@@ -19,6 +19,7 @@
 
 	<%@include file="templates/headerAdminCat.jsp"%>
 	
+	<br/>
 	<form:form action="${pageContext.request.contextPath}/adminCat/ajoutProduit" method="post" modelAttribute="mProduit" enctype="multipart/form-data" >
 		<table width="80%" align="center">
 			<tr>
@@ -27,25 +28,45 @@
 			<tr>
 				<td><form:label path="designation">Nom du produit :</form:label></td>
 				<td><form:input path="designation"></form:input></td>
+			</tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:label path="description">Description :</form:label></td>
 				<td><form:textarea path="description" rows="5" ></form:textarea></td>
+			</tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:label path="prix">Prix :</form:label></td>
 				<td><form:input type="number" step="0.01" path="prix"></form:input></td>
+			</tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:label path="quantite">Quantité :</form:label></td>
 				<td><form:input type="number" path="quantite"></form:input></td>
+			</tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:label path="selection">Disponibilité :</form:label></td>
 				<td><form:input type="number" path="selection"></form:input></td>
+			</tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
-				<td>Photo :</td>
+				<td><p><b>Photo :</b></p></td>
 				<td><input type="file" name="file"></input></td>
 			</tr>
 			<tr>
@@ -57,12 +78,16 @@
 				</form:select>
 				</td>
 			<tr>
-			<br/>
+			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><input type="submit" value="editer"/></td>
 			</tr>
 		</table>
 	</form:form>
+	<br/>
 	
 	<%@include file="templates/footerAdmin.jsp"%>
 

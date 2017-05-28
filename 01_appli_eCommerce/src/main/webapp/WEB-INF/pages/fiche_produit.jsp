@@ -18,6 +18,8 @@
 <body>
 
 	<%@include file="templates/header_avec_menu_client.jsp"%>
+	
+	<br/>
 
 	<!-- FICHE PRODUIT -->
 	

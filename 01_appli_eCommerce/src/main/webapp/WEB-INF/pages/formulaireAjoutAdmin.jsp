@@ -18,27 +18,39 @@
 <body>
 
 	<%@include file="templates/headerAdminCat.jsp"%>
-	
+	<br/>
 	<form:form action="${pageContext.request.contextPath}/adminCat/ajoutAdmin" method="post" modelAttribute="mAdmin">
 		<table width="80%" align="center">
 			<tr>
 				<td><form:label path="username">Username :</form:label></td>
 				<td><form:input path="username"></form:input></td>
+			</tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:label path="password">Password :</form:label></td>
 				<td><form:input path="password"></form:input></td>
+			</tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:label path="activated">Activated :</form:label></td>
 				<td><form:input path="activated"></form:input></td>
+			</tr>
 			<tr>
-			<br/>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:button type="submit" cssStyle="btn btn-default">Editer</form:button></td>
 			</tr>
 		</table>
 	</form:form>
+	<br>
 	
 	<%@include file="templates/footerAdmin.jsp"%>
 

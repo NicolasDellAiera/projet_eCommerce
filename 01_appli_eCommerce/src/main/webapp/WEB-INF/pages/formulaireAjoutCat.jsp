@@ -19,6 +19,7 @@
 
 	<%@include file="templates/headerAdminCat.jsp"%>
 	
+	<br/>
 	<form:form action="${pageContext.request.contextPath}/adminCat/ajoutCat" method="post" modelAttribute="mCategorie">
 		<table width="80%" align="center">
 			<tr>
@@ -26,15 +27,23 @@
 				<td><form:input path="nomCategorie"></form:input></td>
 			<tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
+			<tr>
 				<td><form:label path="description">Description :</form:label></td>
 				<td><form:textarea path="description" rows="5" ></form:textarea></td>
+			</tr>
 			<tr>
-			<br/>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:button type="submit" cssStyle="btn btn-default">Editer</form:button></td>
 			</tr>
 		</table>
 	</form:form>
+	<br/>
 	
 	<%@include file="templates/footerAdmin.jsp"%>
 

@@ -29,7 +29,7 @@
 	<ul class="media-list">
   		<li class="media">
     		<div class="media-left">
-        		<img src="${pageContext.request.contextPath}/site/photoProd?id=${prod.idProduit}">
+        		<img src="${pageContext.request.contextPath}/site/photoProd?id=${lc.produit.idProduit}">
     		</div>
     		<div class="media-body">
       			<h4 class="media-heading">${lc.quantite} ${lc.produit.designation}</h4>
@@ -38,6 +38,8 @@
       			</p>
       			<p>
       				Prix total : ${lc.prix} <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
+      				<br/>
+      				<br/>
       				<a class="btn btn-warning" href="${pageContext.request.contextPath}/site/retirerDuPanier/${mPanier.listeLignesCommande.indexOf(lc)}" role="button">Retirer du panier</a>
       			</p>
     		</div>
@@ -47,6 +49,7 @@
 	<br/>
 	<a class="btn btn-success" href="${pageContext.request.contextPath}/site/validerPanier" role="button">Valider le panier</a>
 	</div>
+	<br/>
 
 	<!-- MESSAGE EN CAS D'ERREUR -->
 	

@@ -56,11 +56,17 @@
 			<tr>
 				<td><form:label path="nomClient">Numéro de carte bancaire :</form:label></td>
 				<td><form:input path="nomClient"></form:input></td>
+			</tr>
+			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:button type="submit">Valider la commande et payer <span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span></form:button></td>
 			</tr>
 		</table>
 	</form:form>
+	<br/>
 
 	<%@include file="templates/footer.html"%>
 

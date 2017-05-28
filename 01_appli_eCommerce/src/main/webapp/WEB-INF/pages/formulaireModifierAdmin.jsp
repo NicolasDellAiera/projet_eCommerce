@@ -24,25 +24,41 @@
 			<tr>
 				<td><form:label path="idAdmin" type="hidden" ></form:label></td>
 				<td><form:input path="idAdmin" type="hidden" value="${pAdmin.idAdmin}" ></form:input></td>
+			</tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:label path="username">Username :</form:label></td>
 				<td><form:input path="username" value="${pAdmin.username}" ></form:input></td>
+			</tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:label path="password">Password :</form:label></td>
 				<td><form:input path="password" value="${pAdmin.password}" ></form:input></td>
+			</tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:label path="activated">Activated :</form:label></td>
 				<td><form:input path="activated" value="${pAdmin.activated}" ></form:input></td>
+			</tr>
 			<tr>
-			<br/>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:button type="submit" cssStyle="btn btn-default">Editer</form:button></td>
 			</tr>
 		</table>
 	</form:form>
+	<br/>
 	
 	<%@include file="templates/footerAdmin.jsp"%>
 

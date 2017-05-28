@@ -9,10 +9,16 @@
 		<title>Denied</title>
 	</head>
 	
-	<body style="background-color: #F5ECCE" >
-		<div style="background-color: #008000; margin-top: 5%; margin-left: 25%; height: 100%; width: 50%; color: white" >
+	<body>
+		<div style="background-color: #222222; margin-top: 5%; margin-left: 25%; height: 100%; width: 50%; color: white" >
+			<br/>
 			<h3 style="color: red; text-align: center" >Vous n'êtes pas autorisé à acceder à cette page</h3>
-			<a href="${pageContext.request.contextPath}/site" >Recommencer</a>
+			<br/>
+			<a href="${pageContext.request.contextPath}/site">
+			<button type="button" class="btn btn-danger" style="margin-left: 45%" >Recommencer</button>
+			</a>
+			<br/>
+			<p></p>
 		</div>
 	</body>
 

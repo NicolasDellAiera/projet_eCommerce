@@ -26,13 +26,23 @@
 				<td><form:input path="email"></form:input></td>
 			<tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
+			<tr>
 				<td><form:label path="mdp">Mot de passe :</form:label></td>
 				<td><form:password path="mdp"></form:password></td>
+			</tr>
+			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:button type="submit" cssStyle="btn btn-default">Se Connecter</form:button></td>
 			</tr>
 		</table>
 	</form:form>
+	<br/>
 	
 	<!-- MESSAGE EN CAS D'ERREUR -->
 	

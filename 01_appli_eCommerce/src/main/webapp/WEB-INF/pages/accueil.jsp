@@ -48,7 +48,7 @@
 	</c:forEach>
 	</div>
 
-	<%@include file="templates/footer.html"%>
+	<%@include file="templates/footer2.html"%>
 
 </body>
 

@@ -21,7 +21,7 @@
 
 	<!-- MENU -->
 
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-inverse" style="margin-top: -20px" >
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
@@ -33,13 +33,15 @@
 			</div>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
+				<div style="margin-top: 10px" >
 				<form:form cssStyle="navbar-form navbar-left" method="POST" modelAttribute="pKeyWord" action="${pageContext.request.contextPath}/adminCat/afficherParKeyWord">
 					<form:input path="designation" cssStyle="form-control"></form:input>
 					<form:button type="submit" cssStyle="btn btn-default" >Rechercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					</form:button>
 				</form:form>
+				</div>
 				<a href="${pageContext.request.contextPath}/adminCat/listeAdmin">
-				<button class="btn btn-default" type="button" style="margin-left: 80%" >Liste ADMIN_PROD</button>
+				<button class="btn btn-default" type="button" style="margin-left: 85%; margin-top: -38px" >Liste ADMIN_PROD</button>
 				</a>
 			</div>
 		</div>

@@ -48,7 +48,7 @@
 		<tr>
 			<td>
 				<a href="${pageContext.request.contextPath}/adminCat/formulaireAjoutAdmin">
-				<button type="button" class="btn btn-default" >Ajouter un admin</button>
+				<button type="button" class="btn btn-primary" >Ajouter un admin</button>
 				</a>
 			</td>
 			<td></td>

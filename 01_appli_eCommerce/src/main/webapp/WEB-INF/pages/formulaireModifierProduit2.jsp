@@ -26,28 +26,56 @@
 				<td><form:input path="idProduit" type="hidden" value="${pProduit.idProduit}" ></form:input></td>
 			<tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
+			<tr>
 				<td><form:label path="designation">Nom du produit :</form:label></td>
 				<td><form:input path="designation" value="${pProduit.designation}" ></form:input></td>
 			<tr>
+			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:label path="description">Description :</form:label></td>
 				<td><form:textarea path="description" rows="5" name="${pProduit.description}" ></form:textarea></td>
 			<tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
+			<tr>
 				<td><form:label path="prix">Prix :</form:label></td>
 				<td><form:input type="number" step="0.01" path="prix" value="${pProduit.prix}" ></form:input></td>
 			<tr>
+			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:label path="quantite">Quantité :</form:label></td>
 				<td><form:input type="number" path="quantite" value="${pProduit.quantite}" ></form:input></td>
 			<tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
+			<tr>
 				<td><form:label path="selection">Disponibilité :</form:label></td>
 				<td><form:input type="number" path="selection" value="${pProduit.selection}" ></form:input></td>
 			<tr>
 			<tr>
-				<td>Photo :</td>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
+			<tr>
+				<td><p><b>Photo :</b></p></td>
 				<td><input type="file" name="file"></input></td>
+			</tr>
+			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
 			</tr>
 			<tr>
 				<td><form:label path="categorie.idCategorie" for="categorie" >Catégorie :</form:label></td>
@@ -57,13 +85,17 @@
 					</c:forEach>
 				</form:select>
 				</td>
+			</tr>
 			<tr>
-			<br/>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><input type="submit" value="editer"/></td>
 			</tr>
 		</table>
 	</form:form>
+	<br/>
 	
 	<%@include file="templates/footerAdmin.jsp"%>
 

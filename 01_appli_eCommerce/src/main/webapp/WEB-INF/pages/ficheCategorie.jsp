@@ -22,23 +22,35 @@
 	<form:form action="${pageContext.request.contextPath}/adminCat/modifierCat" method="post" modelAttribute="mCategorie2">
 		<table width="80%" align="center">
 			<tr>
-				<td><form:label path="idCategorie" type="hidden" >:</form:label></td>
+				<td><form:label path="idCategorie" type="hidden" ></form:label></td>
 				<td><form:input path="idCategorie" type="hidden" value="${pCategorie.idCategorie}" ></form:input></td>
+			</tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:label path="nomCategorie">Nom de la categorie :</form:label></td>
 				<td><form:input path="nomCategorie" value="${pCategorie.nomCategorie}" ></form:input></td>
+			</tr>
 			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:label path="description">Description :</form:label></td>
 				<td><form:textarea path="description" rows="5" name="${pCategorie.description}" value="${pCategorie.description}" ></form:textarea></td>
+			</tr>
 			<tr>
-			<br/>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
 			<tr>
 				<td><form:button type="submit" cssStyle="btn btn-default">Editer</form:button></td>
 			</tr>
 		</table>
 	</form:form>
+	<br/>
 	
 	<%@include file="templates/footerAdmin.jsp"%>
 

@@ -21,7 +21,7 @@
 
 	<!-- MENU -->
 
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-inverse" style="margin-top: -20px" >
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -45,14 +45,14 @@
 					</c:if>
 					<li><a href="${pageContext.request.contextPath}/site/afficherFormEdit">Editer son profil <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a></li>
 				</ul>
-				
-				<form:form cssStyle="navbar-form navbar-left" method="POST" modelAttribute="pKeyWord" action="${pageContext.request.contextPath}/site/afficherParKeyWord">
+				<div style="margin-top: 10px" >
+				<form:form cssStyle="navbar-form navbar-left" method="POST" modelAttribute="pKeyWord" action="${pageContext.request.contextPath}/site/afficherParKeyWord" >
 					<form:input path="designation" cssStyle="form-control"></form:input>
 					<form:button type="submit" cssStyle="btn btn-default" >Rechercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					</form:button>
 				</form:form>
-				
-				<ul class="nav navbar-nav navbar-right">
+				</div>
+				<ul class="nav navbar-nav navbar-right" style="margin-top: -38px" >
 					<li><a href="${pageContext.request.contextPath}/site/afficherPanier">Voir le panier <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
 					<c:if test="${pPrixPanier != 0}">	
 						<li>${pPrixPanier} <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></li>

@@ -18,6 +18,7 @@
 <body>
 
 	<%@include file="templates/headerAdminCat.jsp"%>
+	<br/>
 	
 	<!-- TABLE PRODUITS -->
 	
@@ -41,9 +42,10 @@
 	</c:forEach>
 	<br/>
 	<a href="${pageContext.request.contextPath}/adminCat/formulaireAjoutProduit">
-	<button type="button" class="btn btn-default" >Ajouter un produit</button>
+	<button type="button" class="btn btn-primary" >Ajouter un produit</button>
 	</a>
 	</div>
+	<br/>
 
 	<%@include file="templates/footerAdmin.jsp"%>
 
