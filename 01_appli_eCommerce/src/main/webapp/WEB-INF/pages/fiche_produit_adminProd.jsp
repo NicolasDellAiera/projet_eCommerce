@@ -19,10 +19,12 @@
 
 	<%@include file="templates/headerAdminProd.jsp"%>
 	
+	<br/>
+	
 	<!-- FICHE PRODUIT -->
 	
 	<div style="width: 80%; margin:auto">
-		<img src="${pageContext.request.contextPath}/adminProd/photoProd?id=${pProduit.idProduit}">
+		<img src="${pageContext.request.contextPath}/adminProd/photoProd?id=${pProduit.idProduit}" width="256px">
 		<table class="table table-hover">
 			<tr>
 				<th>Designation</th>

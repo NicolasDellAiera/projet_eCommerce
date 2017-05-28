@@ -29,7 +29,7 @@
 	<ul class="media-list">
   		<li class="media">
     		<div class="media-left">
-        		<img src="${pageContext.request.contextPath}/site/photoProd?id=${lc.produit.idProduit}">
+        		<img src="${pageContext.request.contextPath}/site/photoProd?id=${lc.produit.idProduit}" width="256px">
     		</div>
     		<div class="media-body">
       			<h4 class="media-heading">${lc.quantite} ${lc.produit.designation}</h4>

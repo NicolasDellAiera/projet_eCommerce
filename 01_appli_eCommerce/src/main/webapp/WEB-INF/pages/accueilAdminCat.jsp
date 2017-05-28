@@ -28,7 +28,7 @@
   		<li class="media">
     		<div class="media-left">
       			<a href="${pageContext.request.contextPath}/adminCat/afficherFicheProd/${prod.idProduit}">
-        			<img src="${pageContext.request.contextPath}/adminCat/photoProd?id=${prod.idProduit}">
+        			<img src="${pageContext.request.contextPath}/adminCat/photoProd?id=${prod.idProduit}" width="256px">
      			</a>
     		</div>
     		<div class="media-body">
