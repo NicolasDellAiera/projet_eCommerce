@@ -1,11 +1,23 @@
 package fr.adaming.service;
 
+/**
+ * @author INTI-0366
+ * 
+ * Interface du service pour les produits
+ */
+
 import java.util.List;
 
 import fr.adaming.entities.Categorie;
 import fr.adaming.entities.Produit;
 
 public interface IProduitService {
+	
+	/**
+	 * @return
+	 * 
+	 * Initialisation des méthodes produits dans le service
+	 */
 	
 	public List<Produit> getAllProducts();
 	

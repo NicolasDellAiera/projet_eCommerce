@@ -1,5 +1,11 @@
 package fr.adaming.service;
 
+/**
+ * @author INTI-0366
+ * 
+ * Classe service implémentant l'interface pour les méthodes de les produits
+ */
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +21,33 @@ import fr.adaming.entities.Produit;
 
 public class ProduitServiceImpl implements IProduitService {
 	
+	/**
+	 * Insertion de la DAO
+	 */
+	
 	@Autowired
 	private IProduitDao prDAO;
 
+	/**
+	 * @return the prDAO
+	 */
 	public IProduitDao getPrDAO() {
 		return prDAO;
 	}
 
+	/**
+	 * @param prDAO the prDAO to set
+	 */
 	public void setPrDAO(IProduitDao prDAO) {
 		this.prDAO = prDAO;
 	}
+	
+	/**
+	 * @param model
+	 * @return
+	 * 
+	 * Generation des methodes
+	 */
 
 	@Override
 	public List<Produit> getAllProductsByCategory(Categorie c) {

@@ -1,5 +1,11 @@
 package fr.adaming.service;
 
+/**
+ * @author INTI-0366
+ * 
+ * Classe service implémentant l'interface pour les méthodes de les categories
+ */
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,19 +20,35 @@ import fr.adaming.entities.Categorie;
 
 public class CategorieServiceImpl implements ICategorieService 
 {
-	//Associations
+	
+	/**
+	 * Insertion de la DAO
+	 */
+	
 	@Autowired
 	private ICategorieDao catDAO;
-
+	
+	/**
+	 * @return the catDAO
+	 */
 	public ICategorieDao getCatDAO() {
 		return catDAO;
 	}
-	
+
+	/**
+	 * @param catDAO the catDAO to set
+	 */
 	public void setCatDAO(ICategorieDao catDAO) {
 		this.catDAO = catDAO;
 	}
 	
-	//Methods
+	/**
+	 * @param model
+	 * @return
+	 * 
+	 * Generation des methodes
+	 */
+
 	@Override
 	public List<Categorie> getAllCategory() {
 		return catDAO.getAllCategory();

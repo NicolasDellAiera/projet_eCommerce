@@ -1,11 +1,23 @@
 package fr.adaming.dao;
 
+/**
+ * @author INTI-0366
+ * 
+ * Interface de la DAO pour les produits
+ */
+
 import java.util.List;
 
 import fr.adaming.entities.Categorie;
 import fr.adaming.entities.Produit;
 
 public interface IProduitDao {
+	
+	/**
+	 * @return
+	 * 
+	 * Initialisation des méthodes Produits dans la DAO
+	 */
 	
 	public List<Produit> getAllProducts();
 	

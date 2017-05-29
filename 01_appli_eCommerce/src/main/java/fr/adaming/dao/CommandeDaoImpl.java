@@ -1,5 +1,11 @@
 package fr.adaming.dao;
 
+/**
+ * @author INTI-0366
+ * 
+ * Classe DAO implémentant l'interface pour les méthodes des commandes
+ */
+
 import java.util.List;
 
 import org.hibernate.Query;
@@ -15,16 +21,33 @@ import fr.adaming.entities.Commande;
 
 public class CommandeDaoImpl implements ICommandeDao {
 	
+	/**
+	 * Insertion de SessionFactory
+	 */
+	
 	@Autowired
 	private SessionFactory sf;
 
+	/**
+	 * @return the sf
+	 */
 	public SessionFactory getSf() {
 		return sf;
 	}
 
+	/**
+	 * @param sf the sf to set
+	 */
 	public void setSf(SessionFactory sf) {
 		this.sf = sf;
 	}
+	
+	/**
+	 * @param model
+	 * @return
+	 * 
+	 * Generation des methodes
+	 */
 
 	@Override
 	public List<Commande> getAllCommand(Client cl) {

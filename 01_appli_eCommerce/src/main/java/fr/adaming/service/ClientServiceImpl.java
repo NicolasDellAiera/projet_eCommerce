@@ -19,20 +19,35 @@ import fr.adaming.entities.Client;
 @Transactional
 public class ClientServiceImpl implements IClientService 
 {
-	//Attributes
+	
+	/**
+	 * Insertion de la DAO
+	 */
+	
 	@Autowired
 	private IClientDao clDAO;
 
-	//Getters and setters
+	/**
+	 * @return the clDAO
+	 */
 	public IClientDao getClDAO() {
 		return clDAO;
 	}
 
+	/**
+	 * @param clDAO the clDAO to set
+	 */
 	public void setClDAO(IClientDao clDAO) {
 		this.clDAO = clDAO;
 	}
+	
+	/**
+	 * @param model
+	 * @return
+	 * 
+	 * Generation des methodes
+	 */
 
-	//Methods
 	@Override
 	public Client isExist(Client c) 
 	{

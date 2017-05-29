@@ -1,5 +1,11 @@
 package fr.adaming.service;
 
+/**
+ * @author INTI-0366
+ * 
+ * Classe service implémentant l'interface pour les méthodes de l'administrateur
+ */
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +21,10 @@ import fr.adaming.entities.Role;
 
 public class AdminServiceImpl implements IAdminService {
 	
-	//Associations
+	/**
+	 * Insertion de la DAO
+	 */
+	
 	@Autowired
 	private IAdminProdDao admDAO;
 
@@ -32,6 +41,13 @@ public class AdminServiceImpl implements IAdminService {
 	public void setAdmDAO(IAdminProdDao admDAO) {
 		this.admDAO = admDAO;
 	}
+	
+	/**
+	 * @param model
+	 * @return
+	 * 
+	 * Generation des methodes
+	 */
 
 	@Override
 	public List<Admin> getAllAdminProd() {

@@ -1,5 +1,11 @@
 package fr.adaming.controllers;
 
+/**
+ * @author INTI-0366
+ * 
+ * Controller pour gerer l'administrateur qui s'occupe de la gestion des produits, des categories, et des autres admins
+ */
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
@@ -35,7 +41,13 @@ import fr.adaming.service.IProduitService;
 
 public class AdminCatController {
 	
-	//Associations
+	/**
+	 * Associations :
+	 * ICategorieService catService
+	 * IProduitService prService
+	 * IAdminService admService
+	 */
+	
 	@Autowired
 	private ICategorieService catService;
 	@Autowired
@@ -43,27 +55,55 @@ public class AdminCatController {
 	@Autowired
 	private IAdminService admService;
 	
-	//Getters and setters
+	/**
+	 * @return the catService
+	 */
 	public ICategorieService getCatService() {
 		return catService;
 	}
+
+	/**
+	 * @param catService the catService to set
+	 */
 	public void setCatService(ICategorieService catService) {
 		this.catService = catService;
 	}
+
+	/**
+	 * @return the prService
+	 */
 	public IProduitService getPrService() {
 		return prService;
 	}
+
+	/**
+	 * @param prService the prService to set
+	 */
 	public void setPrService(IProduitService prService) {
 		this.prService = prService;
 	}
+
+	/**
+	 * @return the admService
+	 */
 	public IAdminService getAdmService() {
 		return admService;
 	}
+
+	/**
+	 * @param admService the admService to set
+	 */
 	public void setAdmService(IAdminService admService) {
 		this.admService = admService;
 	}
+
+	/**
+	 * @param model
+	 * @return
+	 * 
+	 * Generation des methodes
+	 */
 	
-	//Methods
 	@RequestMapping(method=RequestMethod.GET)
 	public String afficherAccueil(ModelMap model) 
 	{

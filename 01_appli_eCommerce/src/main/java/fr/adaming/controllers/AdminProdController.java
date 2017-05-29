@@ -1,5 +1,11 @@
 package fr.adaming.controllers;
 
+/**
+ * @author INTI-0366
+ * 
+ * Controller pour gerer l'administrateur qui s'occupe de la gestion des produits
+ */
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
@@ -28,27 +34,52 @@ import fr.adaming.service.IProduitService;
 
 public class AdminProdController {
 	
-	//Associations
+	/**
+	 * Associations :
+	 * ICategorieService catService
+	 * IProduitService prService
+	 */
+	
 	@Autowired
 	private ICategorieService catService;
 	@Autowired
 	private IProduitService prService;
 	
-	//Getters and setters
+	/**
+	 * @return the catService
+	 */
 	public ICategorieService getCatService() {
 		return catService;
 	}
+
+	/**
+	 * @param catService the catService to set
+	 */
 	public void setCatService(ICategorieService catService) {
 		this.catService = catService;
 	}
+
+	/**
+	 * @return the prService
+	 */
 	public IProduitService getPrService() {
 		return prService;
 	}
+
+	/**
+	 * @param prService the prService to set
+	 */
 	public void setPrService(IProduitService prService) {
 		this.prService = prService;
 	}
+
+	/**
+	 * @param model
+	 * @return
+	 * 
+	 * Generation des methodes
+	 */
 	
-	//Methods
 	@RequestMapping(method=RequestMethod.GET)
 	public String afficherAccueil(ModelMap model) 
 	{

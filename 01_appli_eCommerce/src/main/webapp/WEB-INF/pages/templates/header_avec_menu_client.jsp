@@ -55,7 +55,7 @@
 				<ul class="nav navbar-nav navbar-right" style="margin-top: -38px" >
 					<li><a href="${pageContext.request.contextPath}/site/afficherPanier">Voir le panier <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
 					<c:if test="${pPrixPanier != 0}">	
-						<li>${pPrixPanier} <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></li>
+						<li style="color: white; margin-top: 15px" >${pPrixPanier} <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></li>
 					</c:if>
 				</ul>
 			</div>

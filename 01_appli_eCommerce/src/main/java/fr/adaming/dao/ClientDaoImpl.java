@@ -1,5 +1,11 @@
 package fr.adaming.dao;
 
+/**
+ * @author INTI-0366
+ * 
+ * Classe DAO implémentant l'interface pour les méthodes du client
+ */
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,20 +25,35 @@ import fr.adaming.entities.Client;
 @Repository
 public class ClientDaoImpl implements IClientDao 
 {
-	//Attributes
+	
+	/**
+	 * Insertion de SessionFactory
+	 */
+	
 	@Autowired
 	private SessionFactory sf;
 
-	//Getters and setters
+	/**
+	 * @return the sf
+	 */
 	public SessionFactory getSf() {
 		return sf;
 	}
 
+	/**
+	 * @param sf the sf to set
+	 */
 	public void setSf(SessionFactory sf) {
 		this.sf = sf;
 	}
+	
+	/**
+	 * @param model
+	 * @return
+	 * 
+	 * Generation des methodes
+	 */
 
-	//Methods
 	@Override
 	public Client isExist(Client c) 
 	{

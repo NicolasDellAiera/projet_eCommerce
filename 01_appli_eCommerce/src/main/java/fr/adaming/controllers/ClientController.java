@@ -44,9 +44,14 @@ import fr.adaming.service.IProduitService;
 @RequestMapping("/site")
 public class ClientController 
 {
-	//Attributes
+	
+	/**
+	 * Attributs
+	 */
+	
 	private Client client;
 	private Panier panier;
+	
 //	class CarteBancaire
 //	{
 //		String numero;
@@ -68,8 +73,15 @@ public class ClientController
 //			this.numero = numero;
 //		}
 //	}
+
+	/**
+	 * Associations :
+	 * ICategorieService catService
+	 * IClientService cltService
+	 * ICommandeService commandeService
+	 * JavaMailSender mailSender
+	 */
 	
-	//Associations
 	@Autowired
 	private ICategorieService catService;
 	@Autowired
@@ -81,50 +93,108 @@ public class ClientController
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	//Getters and setters
-	public ICategorieService getCatService() {
-		return catService;
-	}
-	public void setCatService(ICategorieService catService) {
-		this.catService = catService;
-	}
-	public IProduitService getPrService() {
-		return prService;
-	}
-	public void setPrService(IProduitService prService) {
-		this.prService = prService;
-	}	
-	public IClientService getCltService() {
-		return cltService;
-	}
-	public void setCltService(IClientService cltService) {
-		this.cltService = cltService;
-	}
+	/**
+	 * @return the client
+	 */
 	public Client getClient() {
 		return client;
 	}
+
+	/**
+	 * @param client the client to set
+	 */
 	public void setClient(Client client) {
 		this.client = client;
 	}
+
+	/**
+	 * @return the panier
+	 */
 	public Panier getPanier() {
 		return panier;
 	}
+
+	/**
+	 * @param panier the panier to set
+	 */
 	public void setPanier(Panier panier) {
 		this.panier = panier;
 	}
+
+	/**
+	 * @return the catService
+	 */
+	public ICategorieService getCatService() {
+		return catService;
+	}
+
+	/**
+	 * @param catService the catService to set
+	 */
+	public void setCatService(ICategorieService catService) {
+		this.catService = catService;
+	}
+
+	/**
+	 * @return the prService
+	 */
+	public IProduitService getPrService() {
+		return prService;
+	}
+
+	/**
+	 * @param prService the prService to set
+	 */
+	public void setPrService(IProduitService prService) {
+		this.prService = prService;
+	}
+
+	/**
+	 * @return the cltService
+	 */
+	public IClientService getCltService() {
+		return cltService;
+	}
+
+	/**
+	 * @param cltService the cltService to set
+	 */
+	public void setCltService(IClientService cltService) {
+		this.cltService = cltService;
+	}
+
+	/**
+	 * @return the commandeService
+	 */
 	public ICommandeService getCommandeService() {
 		return commandeService;
 	}
+
+	/**
+	 * @param commandeService the commandeService to set
+	 */
 	public void setCommandeService(ICommandeService commandeService) {
 		this.commandeService = commandeService;
-	}		
+	}
+
+	/**
+	 * @return the mailSender
+	 */
 	public JavaMailSender getMailSender() {
 		return mailSender;
 	}
+
+	/**
+	 * @param mailSender the mailSender to set
+	 */
 	public void setMailSender(JavaMailSender mailSender) {
 		this.mailSender = mailSender;
 	}
-	//Initialisation
+
+	/**
+	 * Initialisation avec postConstruct
+	 */
+	
 	@PostConstruct
 	public void initialiser()
 	{
@@ -132,7 +202,13 @@ public class ClientController
 		client = new Client();
 	}
 	
-	//Methods
+	/**
+	 * @param model
+	 * @return
+	 * 
+	 * Generation des methodes
+	 */
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public String afficherAccueil(ModelMap model) 
 	{

@@ -1,5 +1,11 @@
 package fr.adaming.controllers;
 
+/**
+ * @author INTI-0366
+ * 
+ * Controller pour gerer la connexion des administrateurs
+ */
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,30 +23,56 @@ import fr.adaming.service.IProduitService;
 
 public class LoginController {
 	
-	//Associations
+	/**
+	 * Associations :
+	 * ICategorieService catService
+	 * IProduitService prService
+	 */
+	
 	@Autowired
 	private ICategorieService catService;
 	@Autowired
 	private IProduitService prService;
 	
-	//Getters and setters
+	/**
+	 * @return the catService
+	 */
 	public ICategorieService getCatService() {
 		return catService;
 	}
+
+	/**
+	 * @param catService the catService to set
+	 */
 	public void setCatService(ICategorieService catService) {
 		this.catService = catService;
 	}
+
+	/**
+	 * @return the prService
+	 */
 	public IProduitService getPrService() {
 		return prService;
 	}
+
+	/**
+	 * @param prService the prService to set
+	 */
 	public void setPrService(IProduitService prService) {
 		this.prService = prService;
 	}
-	
+
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String afficherPageLogin() {
 		return "loginPage";
 	}
+	
+	/**
+	 * @param model
+	 * @return
+	 * 
+	 * Generation des methodes
+	 */
 	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public ModelAndView  logoutMethode() {

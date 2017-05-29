@@ -1,5 +1,11 @@
 package fr.adaming.dao;
 
+/**
+ * @author INTI-0366
+ * 
+ * Classe DAO implémentant l'interface pour les méthodes des produits
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,16 +25,32 @@ import fr.adaming.entities.Produit;
 
 public class ProduitDaoImpl implements IProduitDao {
 	
+	/**
+	 * Insertion de SessionFactory
+	 */
+	
 	@Autowired
 	private SessionFactory sf;
-
+	/**
+	 * @return the sf
+	 */
 	public SessionFactory getSf() {
 		return sf;
 	}
 
+	/**
+	 * @param sf the sf to set
+	 */
 	public void setSf(SessionFactory sf) {
 		this.sf = sf;
 	}
+	
+	/**
+	 * @param model
+	 * @return
+	 * 
+	 * Generation des methodes
+	 */
 
 	@Override
 	public List<Produit> getAllProductsByCategory(Categorie c) {

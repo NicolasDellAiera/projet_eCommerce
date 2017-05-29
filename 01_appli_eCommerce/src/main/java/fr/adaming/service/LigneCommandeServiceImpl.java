@@ -1,5 +1,11 @@
 package fr.adaming.service;
 
+/**
+ * @author INTI-0366
+ * 
+ * Classe service implémentant l'interface pour les méthodes de les commandes
+ */
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +20,33 @@ import fr.adaming.entities.LigneCommande;
 
 public class LigneCommandeServiceImpl implements ILigneCommandeService {
 	
+	/**
+	 * Insertion de la DAO
+	 */
+	
 	@Autowired
 	private ILigneCommandeDao lcDAO;
 
+	/**
+	 * @return the lcDAO
+	 */
 	public ILigneCommandeDao getLcDAO() {
 		return lcDAO;
 	}
 
+	/**
+	 * @param lcDAO the lcDAO to set
+	 */
 	public void setLcDAO(ILigneCommandeDao lcDAO) {
 		this.lcDAO = lcDAO;
 	}
+	
+	/**
+	 * @param model
+	 * @return
+	 * 
+	 * Generation des methodes
+	 */
 
 	@Override
 	public List<LigneCommande> getAllCommandLine() {
