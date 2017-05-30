@@ -22,5 +22,7 @@ public interface ICommandeService {
 	public List<Commande> getAllCommand(Client cl);
 	
 	public Commande createCommand(Commande c);
+	
+	public void createOnePDF(Commande c);
 
 }
