@@ -51,7 +51,7 @@ public class LigneCommandeDaoImpl implements ILigneCommandeDao {
 	@Override
 	public List<LigneCommande> getAllCommandLine() {
 		Session s=sf.getCurrentSession();
-		String req="from LigneCommange l";
+		String req="from LigneCommande l";
 		Query query=s.createQuery(req);
 		List<LigneCommande> listeDesCommandes=query.list();
 		return listeDesCommandes;
