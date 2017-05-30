@@ -36,7 +36,7 @@
   		<li class="media">
     		<div class="media-left">
       			<a href="${pageContext.request.contextPath}/site/afficherFicheProd/${prod.idProduit}">
-        			<img src="${pageContext.request.contextPath}/site/photoProd?id=${prod.idProduit}">
+        			<img src="${pageContext.request.contextPath}/site/photoProd?id=${prod.idProduit}" width="256px">
      			</a>
     		</div>
     		<div class="media-body">

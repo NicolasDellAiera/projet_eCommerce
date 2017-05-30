@@ -488,10 +488,14 @@ public class ClientController
 		com.setDateCommande(Calendar.getInstance().getTime());
 		commandeService.createCommand(com);
 		
+		//Génération du PDF
+		commandeService.createOnePDF(com);
+		
 		//Envoi d'un mail de confirmation
 		String sujet = "Confirmation de votre commande";
 		String texte = "Nous accusons bonne réception de votre commande pour un montant de " + this.panier.getMontant() +
-				"euros. Elle sera traitée dans les meilleurs délais. \nMartin Thomas et Dell'aiera Nicolas";
+				"euros. Elle sera traitée dans les meilleurs délais. \nVous trouverez en pièce jointe la facture de votre commande. \n\nMartin Thomas et Dell'aiera Nicolas";
+		
 		SimpleMailMessage email = new SimpleMailMessage();
 		email.setFrom("dellaiera.nicolas@gmail.com");
 		email.setTo(this.client.getEmail());

@@ -51,7 +51,7 @@ public class CategorieDaoImpl implements ICategorieDao {
 	@Override
 	public List<Categorie> getAllCategory() {
 		Session s=sf.getCurrentSession();
-		String req="from Categorie c";
+		String req="FROM Categorie c ORDER BY c.nomCategorie ASC";
 		Query query=s.createQuery(req);
 		List<Categorie> listeCategories=query.list();
 		return listeCategories;
