@@ -98,7 +98,7 @@ public class CommandeServiceImpl implements ICommandeService {
 		List<LigneCommande> listeDesCommandes=c.getListeLigneCommandes();
 		
 		try {
-			PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\INTI-0366\\Desktop\\facture.pdf"));
+			PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\INTI-0368\\Desktop\\facture.pdf"));
 			document.open();
 			PdfPTable tableTitre = new PdfPTable(1);
 			PdfPTable tableInfoClient = new PdfPTable(1);

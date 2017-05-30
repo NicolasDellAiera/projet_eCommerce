@@ -3,8 +3,20 @@ package fr.adaming.controllers;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.annotation.PostConstruct;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
@@ -491,18 +503,48 @@ public class ClientController
 		//Génération du PDF
 		commandeService.createOnePDF(com);
 		
-		//Envoi d'un mail de confirmation
+		//Envoi d'un mail de confirmation (mail simple)
 		String sujet = "Confirmation de votre commande";
 		String texte = "Nous accusons bonne réception de votre commande pour un montant de " + this.panier.getMontant() +
 				"euros. Elle sera traitée dans les meilleurs délais. \nVous trouverez en pièce jointe la facture de votre commande. \n\nMartin Thomas et Dell'aiera Nicolas";
+//		SimpleMailMessage email = new SimpleMailMessage();
+//		email.setFrom("dellaiera.nicolas@gmail.com");
+//		email.setTo(this.client.getEmail());
+//		email.setSubject(sujet);
+//		email.setText(texte);
+//		mailSender.send(email);
 		
-		SimpleMailMessage email = new SimpleMailMessage();
-		email.setFrom("dellaiera.nicolas@gmail.com");
-		email.setTo(this.client.getEmail());
-		email.setSubject(sujet);
-		email.setText(texte);
-		mailSender.send(email);
-		
+		//Envoi d'un mail bis (avec pièce jointe)
+	    try 
+	    {
+	    	Properties props = System.getProperties( );
+		    props.put("mail.smtp.host", "smtp.gmail.com");
+		    Session session = Session.getDefaultInstance(props, null);
+		    FileDataSource source = new FileDataSource("C:\\Users\\INTI-0368\\Desktop\\facture.pdf");
+		    
+		    MimeMessage mail = new MimeMessage(session);
+		    mail.setFrom(new InternetAddress("XXX"));
+		    mail.setRecipient(Message.RecipientType.TO, new InternetAddress(this.client.getEmail()));
+		    mail.setSubject(sujet);
+		    
+		    BodyPart message = new MimeBodyPart();
+		    message.setContent(texte, "text/plain");
+
+	    	BodyPart pieceJointe = new MimeBodyPart();
+	    	pieceJointe.setDataHandler(new DataHandler(source));
+	    	pieceJointe.setFileName("Angular_commerce_facture.pdf");
+			
+	    	Multipart multipart = new MimeMultipart();
+	    	multipart.addBodyPart(message);
+	    	multipart.addBodyPart(pieceJointe);
+	    	mail.setContent(multipart);
+			mailSender.send(mail);
+		} 
+	    catch (MessagingException e) 
+	    {
+			e.printStackTrace();
+		}
+	    
 		//Réinitialisation du panier
 		this.panier.getListeLignesCommande().clear();
 		this.panier.setMontant(0);
